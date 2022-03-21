@@ -1,0 +1,15 @@
+Reunião 19/03/2022
+-- hostipal de braga
+
+-solução frente --- problema -> garra, +/- braço robotico ou garra flixeis
+robo alinha e garra pega
+-- verificar como as pessoas estão sentadas nas cadeirass- posição das pernas
+
+-- soluçao traseira
+--percebeer se as pessoas se sentem desconfortaris em trasnprtar de recuos - clinicos e pacientes
+transporte faz confusão
+- movimento no transpote de pacientes em cadeira de rodas
+- engate tipo trator
+
+- Fazer ambiente de simulação 3D
+- sistema virtual do sistema
