@@ -1,0 +1,91 @@
+% This is samplepaper.tex, a sample chapter demonstrating the
+% LLNCS macro package for Springer Computer Science proceedings;
+% Version 2.20 of 2017/10/04
+%
+\documentclass[runningheads]{llncs}
+%
+\usepackage{lipsum}  
+\usepackage{graphicx}
+\usepackage{indentfirst}
+% Used for displaying a sample figure. If possible, figure files should
+% be included in EPS format.
+%
+% If you use the hyperref package, please uncomment the following line
+% to display URLs in blue roman font according to Springer's eBook style:
+% \renewcommand\UrlFont{\color{blue}\rmfamily}
+
+% ORCID Link
+\usepackage[pdfstartview=XYZ,
+bookmarks=true,
+colorlinks=true,
+linkcolor=blue,
+urlcolor=blue,
+citecolor=blue,
+pdftex,
+bookmarks=true,
+linktocpage=true, % makes the page number as hyperlink in table of content
+hyperindex=true
+]{hyperref}
+
+\usepackage{orcidlink}
+% ORCID LINK end
+
+\begin{document}
+%
+\title{AUTONOMOUS MOBILE ROBOT FOR CONVENTIONAL WHEELCHAIRS TRANSPORTATION IN HEALTHCARE INSTITUTIONS}
+%
+%\titlerunning{Abbreviated paper title}
+% If the paper title is too long for the running head, you can set
+% an abbreviated paper title here
+%
+
+% Make commands for any number of authors here.
+\author{João M. Faria \orcidlink{0000-0002-4873-5458} \and
+António H. J. Moreira \orcidlink{0000-0002-2148-9146}}
+%
+\authorrunning{João M. Faria et al.}
+%r Remove authorruning
+%\pagestyle{empty}
+
+% First names are abbreviated in the running head.
+% If there are more than two authors, 'et al.' is used.
+%
+\institute{2Ai - School of Technology, IPCA, Barcelos, Portugal\\
+%\email{\{jpfaria,amoreira\}@ipca.pt}}
+\email{jpfaria@ipca.pt \\ amoreira@ipca.pt}}
+
+%
+\maketitle              % typeset the header of the contribution
+%
+%
+%
+\section*{Abstract}
+Industry 4.0 presents itself as a new era in which the industry is led by technologies such as robotics, artificial intelligence, and device interconnection. The increasing implementation of robots in industries allows a better quality of service with high accuracy in less time. As a result, these advantages are now in other areas such as medicine or the military to mitigate problems.
+\par
+In health institutions, the transport of patients is a recurrent, time-consuming, non-ergonomic task and requires the help of assistants\cite{assistants}. There are solutions such as electric wheelchairs\cite{electricwheelchairs} that facilitate patient movement or intelligent wheelchairs\cite{intelligentwheelchairs} that transport patients to their destination autonomously, nevertheless, the high costs of these replacement wheelchairs are a financial obstacle for institutions.
+\par
+This project aims to apply and explore an Autonomous Mobile Robot (AMR) to transport conventional wheelchairs in hospitals, clinics, etc., therefore,wheelchairs are not automated.This robot running the Robot Operating System (ROS) will attach itself autonomously to the conventional wheelchair, in a secure, easy, and fast link. The transport request commands will be given to the robot through a central application by the doctor or nurse and will be in constant communication with the institution's management system. This communication is essential to know information such as: which patient is transported, who requests transportation, and the various destinations such as treatment or diagnostic areas, outdoors, etc.
+\par
+To validate the system, we will assess: 1) the effectiveness of the coupling system to the chair, 2) the usability (patient and safety system), and, finally, 3) the efficiency of the application set, a) management system, and b) transport system in typical use cases. The expected result of this project will be a ROS-based robotic system to help manage wheelchair transport in health institutions, increasing their availability and reducing the time required for medical personnel in these tasks.
+
+
+% the environments 'definition', 'lemma', 'proposition', 'corollary',
+% 'remark', and 'example' are defined in the LLNCS documentclass as well.
+%
+
+%For citations of references,
+%In \cite{einstein} Einstein....
+
+
+\keywords{Autonomous Mobile Robot(AMR) \and Transportation \and Conventional Wheelchair \and Health Institutions Management.}
+%
+% ---- Bibliography ----
+%
+% BibTeX users should specify bibliography style 'splncs04'.
+% References will then be sorted and formatted in the correct style.
+%
+\bibliographystyle{refs-style}
+\bibliography{refs}
+%
+
+\end{document}

@@ -1,0 +1,20 @@
+Questionário
+
+Questionário inicial:
+	1. Idade
+	2. Genéro
+	3. É dependente da cadeira de rodas?
+		3.1. Está dependente da cadeira de rodas à quanto tempo?
+		3.2. Quanto tempo passa diáriamente na cadeira de rodas?
+	5. Sentiria-se desconfortável se um robô o transporta-se dentro de instituições de saúde? (Hostipais, clínicas, etc)
+	6. Acha que se sentiria desconfortável se fosse transportado de traseira?
+
+Teste
+
+Questionário final:
+	1. Sentiu-se ancioso ou com medo durante o transporte? 
+	2. Sentiu-se desconfortável no pequeno teste em que foi transportado de traseira?
+	3. Sentiu-se desconfortável no pequeno teste em que foi transportado de frente?
+	4. Em qual dos dois transportes se sentiu mais confortável?
+	5. Na sua opinião qual dos dois tipos de transporte acha que é mais viável?
+

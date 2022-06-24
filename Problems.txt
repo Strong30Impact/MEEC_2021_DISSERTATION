@@ -1,0 +1,4 @@
+Problemas:
+
+1. LD-60 funciona só com ROS1 - Usar ROS1 ou ROS2?
+2. Não tenho planta do Hostipal de Braga - Como fazer? Crio uma e simulo para experimentar?
