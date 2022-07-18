@@ -107,7 +107,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View) {
         when (v.id) {
             R.id.login_btn_signin -> {
-//                Utils.moveMainPage("João", requireContext())
+                Utils.moveMainPage( requireContext())
             }
             R.id.password_iv_show -> {
                 misshowpass = !misshowpass
