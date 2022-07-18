@@ -1,4 +1,4 @@
-package pt.ipca.dissertation_14861.Utils.connections
+package pt.ipca.dissertation_14861.utils.connections
 
 import android.app.Application
 

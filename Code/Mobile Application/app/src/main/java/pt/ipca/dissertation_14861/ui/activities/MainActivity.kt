@@ -1,13 +1,14 @@
-package pt.ipca.dissertation_14861
+package pt.ipca.dissertation_14861.ui.activities
 
 import android.app.AlertDialog
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import pt.ipca.dissertation_14861.Utils.Alerts
-import pt.ipca.dissertation_14861.Utils.connections.ConnectionReceiver
-import pt.ipca.dissertation_14861.Utils.connections.ReceiverConnection
+import pt.ipca.dissertation_14861.R
+import pt.ipca.dissertation_14861.utils.Alerts
+import pt.ipca.dissertation_14861.utils.connections.ConnectionReceiver
+import pt.ipca.dissertation_14861.utils.connections.ReceiverConnection
 
 class MainActivity : AppCompatActivity(), ConnectionReceiver.ConnectionReceiverListener {
 

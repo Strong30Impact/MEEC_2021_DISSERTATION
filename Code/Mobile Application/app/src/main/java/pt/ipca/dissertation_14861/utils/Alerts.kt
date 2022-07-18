@@ -1,4 +1,4 @@
-package pt.ipca.dissertation_14861.Utils
+package pt.ipca.dissertation_14861.utils
 
 import android.app.AlertDialog
 import android.content.Context

@@ -6,9 +6,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
-        android:name=".Utils.connections.ReceiverConnection"
+        android:name=".utils.connections.ReceiverConnection"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -17,10 +16,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MobileApplication"
-        tools:targetApi="31"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name="pt.ipca.dissertation_14861.ui.activities.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,15 +28,19 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="pt.ipca.dissertation_14861.ui.activities.MainActivity"
+            android:exported="true">
+        </activity>
+
         <receiver
-            android:name=".Utils.connections.ConnectionReceiver"
+            android:name=".utils.connections.ConnectionReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
-
     </application>
 
 </manifest>
