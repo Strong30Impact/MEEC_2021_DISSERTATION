@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Mobile Application</string>
+    //Strings Alerts
+    <string name="ok">ok</string>
+    <string name="wifi">wifi</string>
+    <string name="mobiledata">mobile data</string>
 </resources>
