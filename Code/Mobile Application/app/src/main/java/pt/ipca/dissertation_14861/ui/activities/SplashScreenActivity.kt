@@ -1,12 +1,10 @@
 package pt.ipca.dissertation_14861.ui.activities
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.preference.PreferenceManager
+import androidx.appcompat.app.AppCompatActivity
 import pt.ipca.dissertation_14861.R
-import java.util.logging.Logger
 
 /*
     Class to created splash screen
@@ -19,9 +17,12 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
+        // Hide toolbar
+        supportActionBar?.hide()
+
         Handler().postDelayed({
             // Check if the user has read the intro of the App
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
         }, splashtime)
     }
 }

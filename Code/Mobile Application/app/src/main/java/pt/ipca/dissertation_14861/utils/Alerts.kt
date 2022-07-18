@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.provider.Settings
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import pt.ipca.dissertation_14861.R
 
 class Alerts: AppCompatActivity() {

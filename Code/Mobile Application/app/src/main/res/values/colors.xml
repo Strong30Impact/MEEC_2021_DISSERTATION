@@ -13,4 +13,7 @@
     <color name="gray">#AEAEAE</color>
     <color name="grayDark">#838383</color>
     <color name="grayDark2">#424141</color>
+    <color name="colorSigninSignup">#252427</color>
+    <color name="textPrimaryColor">#000000</color>
+    <color name="textSecundaryColor">#AEAEAE</color>
 </resources>
