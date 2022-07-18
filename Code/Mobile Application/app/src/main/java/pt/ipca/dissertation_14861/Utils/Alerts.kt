@@ -37,6 +37,7 @@ class Alerts: AppCompatActivity() {
         dialog.show()
     }
 
+    
 /*
     fun showAlertConnectionError(builder: AlertDialog.Builder, msg: String) {
         builder.setTitle("No connection")
