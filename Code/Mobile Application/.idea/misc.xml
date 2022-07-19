@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../Programs/Android/Sdk/platforms/android-32/data/res/layout/simple_list_item_1.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/icon_arrow.xml" value="0.19" />
+        <entry key="app/src/main/res/drawable/icon_hide_password.xml" value="0.19" />
+        <entry key="app/src/main/res/drawable/icon_show_password.xml" value="0.19" />
         <entry key="app/src/main/res/drawable/round_bg.xml" value="0.189" />
         <entry key="app/src/main/res/drawable/signin_btn.xml" value="0.189" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
@@ -11,7 +15,7 @@
         <entry key="app/src/main/res/layout/dialog_progress.xml" value="0.67" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_sign_up.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_sign_up2.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_sign_up2.xml" value="0.16" />
       </map>
     </option>
   </component>

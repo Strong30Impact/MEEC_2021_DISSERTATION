@@ -1,16 +1,24 @@
 package pt.ipca.dissertation_14861.utils
 
+import android.R
 import android.app.AlertDialog
 import android.content.Context
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import pt.ipca.dissertation_14861.ui.fragments.SignUp2Fragment
 import java.util.*
 
 class Firebase: AppCompatActivity()  {
 
     companion object {
+
+        var healthInstitutions: ArrayList<String> = arrayListOf<String>("")
 
         /*
             Function for the sign in with user credentials
@@ -79,6 +87,27 @@ class Firebase: AppCompatActivity()  {
                 .child("Users")
                 .child(listUserInformation[3])
                 .updateChildren(maps)
+        }
+
+        /*
+            Function to get health institutions from firebase to user select
+        */
+        fun getHealthInstitutions( mContext: Context) {
+            var databaseReference = FirebaseDatabase.getInstance()
+            databaseReference.getReference("HealthInstitutions").addValueEventListener(object :
+                ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    healthInstitutions.removeAt(0)
+                    for (postSnapshot in snapshot.children) {
+                        val name = postSnapshot.key
+                        healthInstitutions.add(name.toString())
+                    }
+
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
         }
     }
 }

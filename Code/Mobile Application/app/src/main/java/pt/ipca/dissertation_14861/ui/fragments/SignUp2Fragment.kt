@@ -1,6 +1,7 @@
 package pt.ipca.dissertation_14861.ui.fragments
 
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,10 +12,15 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import pt.ipca.dissertation_14861.R
 import pt.ipca.dissertation_14861.utils.Alerts
 import pt.ipca.dissertation_14861.utils.Firebase
 import pt.ipca.dissertation_14861.utils.Utils
+import java.util.ArrayList
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +32,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [SignUp2Fragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SignUp2Fragment : Fragment(), View.OnClickListener {
+class SignUp2Fragment : Fragment(), View.OnClickListener{
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -65,6 +71,8 @@ class SignUp2Fragment : Fragment(), View.OnClickListener {
                     putString(ARG_PARAM2, param2)
                 }
             }
+        lateinit var signup_spinner_health: Spinner
+
     }
 
     private lateinit var loginFragment: LoginFragment
@@ -76,7 +84,6 @@ class SignUp2Fragment : Fragment(), View.OnClickListener {
     private lateinit var signup_btn_signup: Button
     private lateinit var password_iv_show: ImageView
     private lateinit var password_iv_confirmshow: ImageView
-    private lateinit var signup_et_health: EditText
 
     var misshowpass = false
     var misshowconfirmpass = false
@@ -92,12 +99,13 @@ class SignUp2Fragment : Fragment(), View.OnClickListener {
         signup_btn_signup = view.findViewById(R.id.signup_btn_signup)
         password_iv_show = view.findViewById(R.id.password_iv_show)
         password_iv_confirmshow = view.findViewById(R.id.password_iv_confirmshow)
-        signup_et_health = view.findViewById(R.id.signup_et_health)
+        signup_spinner_health = view.findViewById(R.id.signup_spinner_health)
 
         login_tv_signup.setOnClickListener(this)
         signup_btn_signup.setOnClickListener(this)
         password_iv_show.setOnClickListener(this)
         password_iv_confirmshow.setOnClickListener(this)
+
 
         // Check if the password are the same
         signup_et_password.addTextChangedListener(object : TextWatcher {
@@ -109,6 +117,9 @@ class SignUp2Fragment : Fragment(), View.OnClickListener {
 
             override fun afterTextChanged(s: Editable) {}
         })
+
+        // Sends health institutions to spinner
+        signup_spinner_health.adapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1,Firebase.healthInstitutions)
     }
 
     override fun onClick(v: View) {
@@ -131,7 +142,7 @@ class SignUp2Fragment : Fragment(), View.OnClickListener {
                             list[1] = SignUpFragment.surname
                             list[2] = SignUpFragment.job
                             list[3] = SignUpFragment.certificate
-                            list[4] = signup_et_health.text.toString()
+                            list[4] = signup_spinner_health.selectedItem.toString()
                             list[5] = signup_et_email.text.toString()
 
                             Firebase.sendUserInformation(list)

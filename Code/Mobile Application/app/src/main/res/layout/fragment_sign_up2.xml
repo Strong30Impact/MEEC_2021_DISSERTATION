@@ -43,19 +43,36 @@
             android:layout_marginBottom="0dp"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/signup_et_health"
+            <RelativeLayout
+                android:id="@+id/linearLayout5"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/signin_btn"
-                android:ems="10"
-                android:hint="HealthCare Institutions"
-                android:inputType="text"
-                android:paddingStart="10dp"
-                android:textColorHint="@color/colorSigninSignup" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+                <Spinner
+                    android:id="@+id/signup_spinner_health"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/signin_btn"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/signup_iv_arrow"
+                    android:layout_width="37dp"
+                    android:layout_height="37dp"
+                    android:layout_alignTop="@+id/signup_spinner_health"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="17dp"
+                    android:gravity="center"
+                    android:src="@drawable/icon_arrow"
+                    app:tint="@color/colorPrimaryDark" />
+            </RelativeLayout>
 
             <EditText
                 android:id="@+id/signup_et_email"
@@ -68,7 +85,7 @@
                 android:ems="10"
                 android:hint="Email Address"
                 android:inputType="textEmailAddress"
-                android:paddingStart="10dp"
+                android:paddingStart="15dp"
                 android:textColorHint="@color/colorSigninSignup" />
 
             <RelativeLayout
@@ -87,7 +104,7 @@
                     android:ems="10"
                     android:hint="Password"
                     android:inputType="textPassword"
-                    android:paddingStart="10dp"
+                    android:paddingStart="15dp"
                     android:textColorHint="@color/colorSigninSignup" />
 
                 <ImageView
@@ -119,7 +136,7 @@
                     android:ems="10"
                     android:hint="Confirm Password"
                     android:inputType="textPassword"
-                    android:paddingStart="10dp"
+                    android:paddingStart="15dp"
                     android:textColorHint="@color/colorSigninSignup" />
 
                 <ImageView

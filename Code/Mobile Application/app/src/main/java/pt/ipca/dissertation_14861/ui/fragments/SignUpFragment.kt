@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import pt.ipca.dissertation_14861.R
 import pt.ipca.dissertation_14861.utils.Alerts
+import pt.ipca.dissertation_14861.utils.Firebase
+import java.util.ArrayList
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -94,8 +96,10 @@ class SignUpFragment : Fragment(), View.OnClickListener {
         signup_rb_job.setOnCheckedChangeListener { _, checkedId ->
             val radioButtonSelected = view.findViewById<RadioButton>(checkedId)
             job = radioButtonSelected.text.toString()
-            println("       qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq    "+job.toString())
         }
+
+        //get information health institutions so there is no delay when presenting the list of health institutions to the user
+        Firebase.getHealthInstitutions(requireContext())
     }
 
     override fun onClick(v: View) {
@@ -105,7 +109,6 @@ class SignUpFragment : Fragment(), View.OnClickListener {
                     && signup_et_certificate.text.isNotEmpty()
                 ) {
                     // Send information to signup2Fragment
-//                    SignUp2Fragment.getInformation(signup_et_name.text.toString(), signup_et_surname.text.toString(), job, signup_et_certificate.text.toString())
                     name = signup_et_name.text.toString()
                     surname = signup_et_surname.text.toString()
                     certificate = signup_et_certificate.text.toString()
