@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.auth.FirebaseAuth
 import pt.ipca.dissertation_14861.R
 import pt.ipca.dissertation_14861.utils.Firebase
@@ -66,8 +67,8 @@ class LoginFragment : Fragment(), View.OnClickListener {
     }
 
 //    lateinit var forgotPasswordFragment: ForgotPasswordFragment
-//    lateinit var signUpFragment: SignUpFragment
-//    lateinit var transaction: FragmentTransaction
+    private lateinit var signUpFragment: SignUpFragment
+    private lateinit var transaction: FragmentTransaction
     private lateinit var login_btn_signin: Button
     private lateinit var login_et_email: EditText
     private lateinit var login_et_password: EditText
@@ -123,7 +124,10 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
             }
             R.id.login_tv_signup -> {
-
+                signUpFragment = SignUpFragment()
+                transaction = fragmentManager?.beginTransaction()!!
+                transaction.replace(R.id.drawable_frameLayout, signUpFragment, null)
+                transaction.commit()
             }
         }
     }
