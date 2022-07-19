@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseUser
 import pt.ipca.dissertation_14861.R
 import pt.ipca.dissertation_14861.ui.activities.MainActivity
+import java.util.regex.Pattern
 
 class Utils: AppCompatActivity() {
 
@@ -57,6 +58,26 @@ class Utils: AppCompatActivity() {
             progressDialog.setContentView(R.layout.dialog_progress)
             //Set Transparent background
             progressDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        }
+
+        /*
+            Function that validates the password with the necessary credentials
+            -At least one upper case, one lower case, one number, and a combination of 8 or more characters
+        */
+        fun validatePassword(password: String): String? {
+            val upperCase = Pattern.compile("[A-Z]")
+            val lowerCase = Pattern.compile("[a-z]")
+            val digitCase = Pattern.compile("[0-9]")
+            var validate: String = "false"
+            validate = if (lowerCase.matcher(password).find()
+                && upperCase.matcher(password).find()
+                && digitCase.matcher(password).find()
+                && password.length >= 8) {
+                "false"
+            } else {
+                "true"
+            }
+            return validate
         }
     }
 }

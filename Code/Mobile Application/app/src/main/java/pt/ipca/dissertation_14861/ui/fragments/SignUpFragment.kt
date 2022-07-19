@@ -120,7 +120,6 @@ class SignUpFragment : Fragment(), View.OnClickListener {
         }
     }
 
-
     /*
         Function to check if exist an error in authentication
     */
