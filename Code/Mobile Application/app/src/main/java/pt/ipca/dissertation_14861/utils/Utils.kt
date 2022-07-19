@@ -8,6 +8,7 @@ import android.text.method.PasswordTransformationMethod
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseUser
 import pt.ipca.dissertation_14861.R
 import pt.ipca.dissertation_14861.ui.activities.MainActivity
 
@@ -18,7 +19,7 @@ class Utils: AppCompatActivity() {
         /*
             Function to move us from Activity after the login
         */
-        fun moveMainPage( mContext: Context) {
+        fun moveMainPage(user: FirebaseUser?, mContext: Context) {
 //                progressDialog(mContext)
                 mContext.startActivity(Intent(mContext, MainActivity::class.java))
         }

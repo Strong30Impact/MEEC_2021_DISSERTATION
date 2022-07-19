@@ -4,10 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
+import com.google.firebase.auth.FirebaseAuth
 import pt.ipca.dissertation_14861.R
+import pt.ipca.dissertation_14861.utils.Firebase
 import pt.ipca.dissertation_14861.utils.Utils
 
 // TODO: Rename parameter arguments, choose names that match
@@ -63,15 +67,15 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
 //    lateinit var forgotPasswordFragment: ForgotPasswordFragment
 //    lateinit var signUpFragment: SignUpFragment
-    lateinit var transaction: FragmentTransaction
-    lateinit var login_btn_signin: Button
-    lateinit var login_et_email: EditText
-    lateinit var login_et_password: EditText
-    lateinit var password_iv_show: ImageView
-    lateinit var login_tv_forgpass: TextView
-    lateinit var login_tv_signup: TextView
-//    lateinit var mAuth : FirebaseAuth
-    var misshowpass = false
+//    lateinit var transaction: FragmentTransaction
+    private lateinit var login_btn_signin: Button
+    private lateinit var login_et_email: EditText
+    private lateinit var login_et_password: EditText
+    private lateinit var password_iv_show: ImageView
+    private lateinit var login_tv_forgpass: TextView
+    private lateinit var login_tv_signup: TextView
+    private lateinit var mAuth : FirebaseAuth
+    private var misshowpass = false
 //    var googleSignInClient: GoogleSignInClient? = null
 //    var callbackManager : CallbackManager? = null
 //    var GOOGLE_LOGIN_CODE = 12502
@@ -79,12 +83,12 @@ class LoginFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        login_btn_signin = view.findViewById<Button>(R.id.login_btn_signin)
-        login_et_email = view.findViewById<EditText>(R.id.login_et_email)
-        login_et_password = view.findViewById<EditText>(R.id.login_et_password)
-        password_iv_show = view.findViewById<ImageView>(R.id.password_iv_show)
-        login_tv_forgpass = view.findViewById<TextView>(R.id.login_tv_forgpass)
-        login_tv_signup = view.findViewById<TextView>(R.id.login_tv_signup)
+        login_btn_signin = view.findViewById(R.id.login_btn_signin)
+        login_et_email = view.findViewById(R.id.login_et_email)
+        login_et_password = view.findViewById(R.id.login_et_password)
+        password_iv_show = view.findViewById(R.id.password_iv_show)
+        login_tv_forgpass = view.findViewById(R.id.login_tv_forgpass)
+        login_tv_signup = view.findViewById(R.id.login_tv_signup)
 
 
         login_btn_signin.setOnClickListener(this)
@@ -99,15 +103,17 @@ class LoginFragment : Fragment(), View.OnClickListener {
             .build()
         googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
         callbackManager = CallbackManager.Factory.create()
-        FacebookSdk.sdkInitialize(requireContext());
+        FacebookSdk.sdkInitialize(requireContext());*/
         mAuth = FirebaseAuth.getInstance()
-*/
+
     }
 
     override fun onClick(v: View) {
         when (v.id) {
             R.id.login_btn_signin -> {
-                Utils.moveMainPage( requireContext())
+                val email = login_et_email.text.toString()
+                val password = login_et_password.text.toString()
+                Firebase.signinAndSignup(mAuth, requireContext(), email, password)
             }
             R.id.password_iv_show -> {
                 misshowpass = !misshowpass

@@ -47,4 +47,22 @@ class Alerts: AppCompatActivity() {
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }*/
+
+    fun showAlertSignInError(builder: AlertDialog.Builder, msg: String){
+        builder.setTitle("Error")
+        builder.setMessage(msg)
+        builder.setCancelable(true)
+        builder.setPositiveButton("Accept",null)
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+
+    fun showAlertAuthenticationError(builder: AlertDialog.Builder, msg: String) {
+        builder.setTitle("Error")
+        builder.setMessage(msg)
+        builder.setCancelable(true)
+        builder.setPositiveButton("Accept",null)
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
 }

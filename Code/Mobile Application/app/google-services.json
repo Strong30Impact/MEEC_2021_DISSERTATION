@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "811631485317",
+    "firebase_url": "https://dissertation-14861-default-rtdb.firebaseio.com",
+    "project_id": "dissertation-14861",
+    "storage_bucket": "dissertation-14861.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811631485317:android:d78f95a6f15bf699f924ec",
+        "android_client_info": {
+          "package_name": "pt.ipca.dissertation_14861"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "811631485317-qfia1i6cfior2hcchhpu9gvk0i4b2pon.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVdBEudhdRpE-nYn8M7iqSuE4kMOgEJBQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "811631485317-qfia1i6cfior2hcchhpu9gvk0i4b2pon.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
