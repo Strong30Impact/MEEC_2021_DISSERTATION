@@ -5,6 +5,7 @@ import android.content.Context
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 
 class Firebase: AppCompatActivity()  {
@@ -59,6 +60,25 @@ class Firebase: AppCompatActivity()  {
                         Toast.makeText(mContext, task.exception?.message, Toast.LENGTH_LONG).show()
                     }
                 }
+        }
+
+        /*
+            Function to sends User information for the firebase
+        */
+        fun sendUserInformation(listUserInformation: Array<String>) {
+
+            var maps = mutableMapOf<String,Any?>()
+            maps["Name"] = listUserInformation[0]
+            maps["Surname"] = listUserInformation[1]
+            maps["job"] = listUserInformation[2]
+            maps["Health Institution"] = listUserInformation[4]
+            maps["email"] = listUserInformation[5]
+
+            var refdatabase = FirebaseDatabase.getInstance()
+            refdatabase.reference
+                .child("Users")
+                .child(listUserInformation[3])
+                .updateChildren(maps)
         }
     }
 }

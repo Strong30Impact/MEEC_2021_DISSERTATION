@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.auth.FirebaseAuth
 import pt.ipca.dissertation_14861.R
 import pt.ipca.dissertation_14861.utils.Alerts
+import pt.ipca.dissertation_14861.utils.Firebase
 import pt.ipca.dissertation_14861.utils.Utils
 
 // TODO: Rename parameter arguments, choose names that match
@@ -64,18 +65,6 @@ class SignUp2Fragment : Fragment(), View.OnClickListener {
                     putString(ARG_PARAM2, param2)
                 }
             }
-
-        /*
-            Function to get name, username,
-        */
-        fun getInformation(name: String, surname: String, job: String, certificate: String) {
-            println("       qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq    " + name.toString())
-            println("       eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee    " + surname.toString())
-            println("       tttttttttttttttttttttttttttttttttttttttttttt    " + job.toString())
-            println("       yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy    " + certificate.toString())
-
-        }
-
     }
 
     private lateinit var loginFragment: LoginFragment
@@ -87,6 +76,7 @@ class SignUp2Fragment : Fragment(), View.OnClickListener {
     private lateinit var signup_btn_signup: Button
     private lateinit var password_iv_show: ImageView
     private lateinit var password_iv_confirmshow: ImageView
+    private lateinit var signup_et_health: EditText
 
     var misshowpass = false
     var misshowconfirmpass = false
@@ -96,12 +86,13 @@ class SignUp2Fragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         login_tv_signup = view.findViewById(R.id.login_tv_signup)
-        signup_et_email = view.findViewById<EditText>(R.id.signup_et_email)
-        signup_et_password = view.findViewById<EditText>(R.id.signup_et_password)
-        signup_et_confirmpassword = view.findViewById<EditText>(R.id.signup_et_confirmpassword)
-        signup_btn_signup = view.findViewById<Button>(R.id.signup_btn_signup)
-        password_iv_show = view.findViewById<ImageView>(R.id.password_iv_show)
-        password_iv_confirmshow = view.findViewById<ImageView>(R.id.password_iv_confirmshow)
+        signup_et_email = view.findViewById(R.id.signup_et_email)
+        signup_et_password = view.findViewById(R.id.signup_et_password)
+        signup_et_confirmpassword = view.findViewById(R.id.signup_et_confirmpassword)
+        signup_btn_signup = view.findViewById(R.id.signup_btn_signup)
+        password_iv_show = view.findViewById(R.id.password_iv_show)
+        password_iv_confirmshow = view.findViewById(R.id.password_iv_confirmshow)
+        signup_et_health = view.findViewById(R.id.signup_et_health)
 
         login_tv_signup.setOnClickListener(this)
         signup_btn_signup.setOnClickListener(this)
@@ -118,13 +109,6 @@ class SignUp2Fragment : Fragment(), View.OnClickListener {
 
             override fun afterTextChanged(s: Editable) {}
         })
-
-        // Get information from signupfragment
-        println("       qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq    "+ SignUpFragment.name.toString())
-        println("       qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq    "+ SignUpFragment.surname.toString())
-        println("       qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq    "+ SignUpFragment.job.toString())
-        println("       qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq    "+ SignUpFragment.certificate.toString())
-
     }
 
     override fun onClick(v: View) {
@@ -140,6 +124,18 @@ class SignUp2Fragment : Fragment(), View.OnClickListener {
                         signup_et_password.text.toString()
                     ).addOnCompleteListener {
                         if (it.isSuccessful) {
+
+                            //send information to firebase
+                            val list = arrayOf("", "", "", "", "", "")
+                            list[0] = SignUpFragment.name
+                            list[1] = SignUpFragment.surname
+                            list[2] = SignUpFragment.job
+                            list[3] = SignUpFragment.certificate
+                            list[4] = signup_et_health.text.toString()
+                            list[5] = signup_et_email.text.toString()
+
+                            Firebase.sendUserInformation(list)
+
                             loginFragment = LoginFragment()
                             transaction = fragmentManager?.beginTransaction()!!
                             transaction.replace(R.id.drawable_frameLayout, loginFragment, null)
