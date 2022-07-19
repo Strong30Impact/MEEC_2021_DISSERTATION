@@ -64,6 +64,18 @@ class SignUp2Fragment : Fragment(), View.OnClickListener {
                     putString(ARG_PARAM2, param2)
                 }
             }
+
+        /*
+            Function to get name, username,
+        */
+        fun getInformation(name: String, surname: String, job: String, certificate: String) {
+            println("       qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq    " + name.toString())
+            println("       eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee    " + surname.toString())
+            println("       tttttttttttttttttttttttttttttttttttttttttttt    " + job.toString())
+            println("       yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy    " + certificate.toString())
+
+        }
+
     }
 
     private lateinit var loginFragment: LoginFragment
@@ -106,6 +118,13 @@ class SignUp2Fragment : Fragment(), View.OnClickListener {
 
             override fun afterTextChanged(s: Editable) {}
         })
+
+        // Get information from signupfragment
+        println("       qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq    "+ SignUpFragment.name.toString())
+        println("       qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq    "+ SignUpFragment.surname.toString())
+        println("       qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq    "+ SignUpFragment.job.toString())
+        println("       qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq    "+ SignUpFragment.certificate.toString())
+
     }
 
     override fun onClick(v: View) {

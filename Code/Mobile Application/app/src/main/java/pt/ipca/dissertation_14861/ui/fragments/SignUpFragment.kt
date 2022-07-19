@@ -2,15 +2,12 @@ package pt.ipca.dissertation_14861.ui.fragments
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import com.google.firebase.auth.FirebaseAuth
 import pt.ipca.dissertation_14861.R
 import pt.ipca.dissertation_14861.utils.Alerts
 
@@ -63,6 +60,11 @@ class SignUpFragment : Fragment(), View.OnClickListener {
                     putString(ARG_PARAM2, param2)
                 }
             }
+
+        lateinit var name: String
+        lateinit var surname: String
+        lateinit var certificate: String
+        lateinit var job: String
     }
 
     private lateinit var loginFragment: LoginFragment
@@ -91,7 +93,7 @@ class SignUpFragment : Fragment(), View.OnClickListener {
 
         signup_rb_job.setOnCheckedChangeListener { _, checkedId ->
             val radioButtonSelected = view.findViewById<RadioButton>(checkedId)
-            val job = radioButtonSelected.text.toString()
+            job = radioButtonSelected.text.toString()
             println("       qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq    "+job.toString())
         }
     }
@@ -102,6 +104,12 @@ class SignUpFragment : Fragment(), View.OnClickListener {
                 if (signup_et_name.text.isNotEmpty() && signup_et_surname.text.isNotEmpty()
                     && signup_et_certificate.text.isNotEmpty()
                 ) {
+                    // Send information to signup2Fragment
+//                    SignUp2Fragment.getInformation(signup_et_name.text.toString(), signup_et_surname.text.toString(), job, signup_et_certificate.text.toString())
+                    name = signup_et_name.text.toString()
+                    surname = signup_et_surname.text.toString()
+                    certificate = signup_et_certificate.text.toString()
+
                     signUp2Fragment = SignUp2Fragment()
                     transaction = fragmentManager?.beginTransaction()!!
                     transaction.replace(R.id.drawable_frameLayout, signUp2Fragment, null)
