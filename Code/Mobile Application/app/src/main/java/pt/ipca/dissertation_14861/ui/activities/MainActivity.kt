@@ -26,6 +26,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import pt.ipca.dissertation_14861.R
+import pt.ipca.dissertation_14861.ui.fragments.*
 import pt.ipca.dissertation_14861.utils.Alerts
 import pt.ipca.dissertation_14861.utils.Firebase
 import pt.ipca.dissertation_14861.utils.connections.ConnectionReceiver
@@ -50,6 +51,13 @@ class MainActivity : AppCompatActivity(), ConnectionReceiver.ConnectionReceiverL
     //Firebase
     private lateinit var  auth : FirebaseAuth
 
+    //Fragments
+    private lateinit var settingsFragment: SettingsFragment
+    private lateinit var mainFragment: MainFragment
+    private lateinit var gamepadJoystickFragment: GamepadJoystickFragment
+    private lateinit var trackingCameraFragment: TrackingCameraFragment
+    private lateinit var addProblemFragment: AddProblemFragment
+
     companion object{
         lateinit var name: String
         lateinit var nCertificate: String
@@ -69,7 +77,6 @@ class MainActivity : AppCompatActivity(), ConnectionReceiver.ConnectionReceiverL
         ReceiverConnection.instance.setConnectionListener(this)
 
         setUpNavigationDrawer()
-
     }
 
     /*
@@ -130,13 +137,63 @@ class MainActivity : AppCompatActivity(), ConnectionReceiver.ConnectionReceiverL
         actionBarDrawerToggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        mainFragment = MainFragment()
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.drawable_frameLayout, mainFragment)
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            .commit()
+
         /*
             Button Fuctions - Here the function is defined for each button
          */
         navigationView.setNavigationItemSelectedListener{
             when (it.itemId) {
+                /*
+                    Button to open add problems
+                */
+                R.id.add_icon -> {
+                    addProblemFragment = AddProblemFragment()
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.drawable_frameLayout, addProblemFragment, null).addToBackStack(null)
+                        .commit()
+                }
+                /*
+                    Button to open robot tracking camera
+                */
+                R.id.camera_icon -> {
+                    trackingCameraFragment = TrackingCameraFragment()
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.drawable_frameLayout, trackingCameraFragment, null).addToBackStack(null)
+                        .commit()
+                }
+                /*
+                    Button to open gamepad joystick
+                */
+                R.id.ros_icon -> {
+                    gamepadJoystickFragment = GamepadJoystickFragment()
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.drawable_frameLayout, gamepadJoystickFragment, null).addToBackStack(null)
+                        .commit()
+                }
+                /*
+                    Button to open settings
+                 */
+                R.id.settings_icon -> {
+                    settingsFragment = SettingsFragment()
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.drawable_frameLayout, settingsFragment, null).addToBackStack(null)
+                        .commit()
+                }
+                /*
+                    Button to log out
+                */
                 R.id.logout_icon -> {
-
+                    // clear user information
                     name = ""
                     nCertificate = ""
                     FirebaseAuth.getInstance().signOut()

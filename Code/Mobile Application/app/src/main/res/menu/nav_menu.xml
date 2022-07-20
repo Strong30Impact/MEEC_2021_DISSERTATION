@@ -2,24 +2,39 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="STORAGE">
         <menu>
+            <item android:title="Transport Orders"
+                android:id="@+id/transport_list_icon"
+                android:icon="@drawable/icon_transport"
+                android:iconTint="@color/textSecundaryColor"/>
             <item android:title="Reports"
                 android:id="@+id/photo_list_icon"
-                android:icon="@drawable/icon_gamepad"
+                android:icon="@drawable/icon_reports"
+                android:iconTint="@color/textSecundaryColor"/>
+        </menu>
+    </item>
+    <item android:title="ANOMALIES">
+        <menu>
+            <item android:title="Add Problem"
+                android:id="@+id/add_icon"
+                android:icon="@drawable/icon_camera"
                 android:iconTint="@color/textSecundaryColor"/>
         </menu>
     </item>
     <item android:title="CONTROLLER">
         <menu>
+            <item android:title="Robot's Tracking Camera"
+                android:id="@+id/camera_icon"
+                android:icon="@drawable/icon_camera"
+                android:iconTint="@color/textSecundaryColor"/>
             <item android:title="Gamepad"
                 android:id="@+id/ros_icon"
                 android:icon="@drawable/icon_gamepad"
                 android:iconTint="@color/textSecundaryColor"/>
         </menu>
     </item>
-
     <item android:title="APP">
         <menu>
-            <item android:title="Change Color"
+            <item android:title="Settings"
                 android:id="@+id/settings_icon"
                 android:icon="@drawable/icon_settings"
                 android:iconTint="@color/textSecundaryColor"/>
