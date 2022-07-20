@@ -3,6 +3,7 @@ package pt.ipca.dissertation_14861.utils
 import android.R
 import android.app.AlertDialog
 import android.content.Context
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import pt.ipca.dissertation_14861.ui.fragments.LoginFragment
 import pt.ipca.dissertation_14861.ui.fragments.SignUp2Fragment
 import java.util.*
 
@@ -40,7 +42,7 @@ class Firebase: AppCompatActivity()  {
                         ?.addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 //Creating a user account
-                                Utils.moveMainPage(task.result?.user, mContext)
+                                Utils.moveMainPage(task.result?.user, mContext, "Main")
                             } else if (task.exception?.message.isNullOrEmpty()) {
                                 //Show the error message
                                 Toast.makeText(mContext, task.exception?.message, Toast.LENGTH_LONG)
@@ -66,10 +68,25 @@ class Firebase: AppCompatActivity()  {
                 ?.addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         //Login
-                        Utils.moveMainPage(task.result?.user, mContext)
+                        Utils.moveMainPage(task.result?.user, mContext, "Main")
                     } else {
                         //Show the error message
                         Toast.makeText(mContext, task.exception?.message, Toast.LENGTH_LONG).show()
+                    }
+                }
+        }
+
+        /*
+            Function that sends the password credentials to the user email - reset password
+        */
+        fun sendResetPassword(mAuth: FirebaseAuth?, email: String, mContext: Context){
+            mAuth?.sendPasswordResetEmail(email)
+                ?.addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(mContext, "Email sent", Toast.LENGTH_LONG)
+                            .show()
+                        Utils.moveMainPage(mAuth.currentUser, mContext, "Login")
+
                     }
                 }
         }

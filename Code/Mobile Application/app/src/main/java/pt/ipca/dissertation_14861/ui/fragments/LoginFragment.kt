@@ -66,7 +66,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
             }
     }
 
-//    lateinit var forgotPasswordFragment: ForgotPasswordFragment
+    lateinit var forgotPasswordFragment: ForgotPasswordFragment
     private lateinit var signUpFragment: SignUpFragment
     private lateinit var transaction: FragmentTransaction
     private lateinit var login_btn_signin: Button
@@ -121,7 +121,10 @@ class LoginFragment : Fragment(), View.OnClickListener {
                 Utils.showPassword(misshowpass, login_et_password, password_iv_show)
             }
             R.id.login_tv_forgpass -> {
-
+                forgotPasswordFragment = ForgotPasswordFragment()
+                transaction = fragmentManager?.beginTransaction()!!
+                transaction.replace(R.id.drawable_frameLayout, forgotPasswordFragment, null)
+                transaction.commit()
             }
             R.id.login_tv_signup -> {
                 signUpFragment = SignUpFragment()

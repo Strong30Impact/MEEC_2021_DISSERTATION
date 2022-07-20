@@ -11,6 +11,7 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseUser
 import pt.ipca.dissertation_14861.R
+import pt.ipca.dissertation_14861.ui.activities.LoginActivity
 import pt.ipca.dissertation_14861.ui.activities.MainActivity
 import java.util.regex.Pattern
 
@@ -19,11 +20,18 @@ class Utils: AppCompatActivity() {
     companion object {
 
         /*
-            Function to move us from Activity after the login
+            Function to move us from other Activity
         */
-        fun moveMainPage(user: FirebaseUser?, mContext: Context) {
+        fun moveMainPage(user: FirebaseUser?, mContext: Context, page: String) {
 //                progressDialog(mContext)
-                mContext.startActivity(Intent(mContext, MainActivity::class.java))
+            when (page) {
+                "Main" -> {
+                    mContext.startActivity(Intent(mContext, MainActivity::class.java))
+                }
+                "Login" -> {
+                    mContext.startActivity(Intent(mContext, LoginActivity::class.java))
+                }
+            }
         }
 
         /*
