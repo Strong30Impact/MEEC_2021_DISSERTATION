@@ -2,19 +2,25 @@ package pt.ipca.dissertation_14861.utils
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
+import android.os.Handler
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import pt.ipca.dissertation_14861.ui.activities.LoginActivity
+import pt.ipca.dissertation_14861.ui.activities.MainActivity
 
 class Firebase: AppCompatActivity()  {
 
     companion object {
 
         var healthInstitutions: ArrayList<String> = arrayListOf("")
+        private var mListUserInformation = arrayOf("", "", "", "")
 
         /*
             Function for the sign in with user credentials
@@ -29,7 +35,6 @@ class Firebase: AppCompatActivity()  {
             val builder = AlertDialog.Builder(mContext)
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
-
                 // Check if email is validated
                 if (Utils.validateEmailAddress(email)) {
                     mAuth.createUserWithEmailAndPassword(email, password)
@@ -61,8 +66,19 @@ class Firebase: AppCompatActivity()  {
             mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        //Login
-                        Utils.moveMainPage(task.result?.user, mContext, "Main")
+                        // Get user info now so you don't have lag issues when showing in Main
+                        val user: FirebaseUser = mAuth.currentUser!!
+
+                        mListUserInformation = getUserInformation(user)
+
+                        Handler().postDelayed({
+
+                        // Send information to Main
+                            MainActivity.name = mListUserInformation[0]
+                            MainActivity.nCertificate = mListUserInformation[2]
+                            //Login
+                            Utils.moveMainPage(task.result?.user, mContext, "Main")
+                        }, 1000)
                     } else {
                         //Show the error message
                         Toast.makeText(mContext, task.exception?.message, Toast.LENGTH_LONG).show()
@@ -80,7 +96,6 @@ class Firebase: AppCompatActivity()  {
                         Toast.makeText(mContext, "Email sent", Toast.LENGTH_LONG)
                             .show()
                         Utils.moveMainPage(mAuth.currentUser, mContext, "Login")
-
                     }
                 }
         }
@@ -89,18 +104,22 @@ class Firebase: AppCompatActivity()  {
             Function to sends User information for the firebase
         */
         fun sendUserInformation(listUserInformation: Array<String>) {
-
             val maps = mutableMapOf<String,Any?>()
+
             maps["Name"] = listUserInformation[0]
             maps["Surname"] = listUserInformation[1]
             maps["Job"] = listUserInformation[2]
+            maps["N Certificate Professional"] = listUserInformation[3]
             maps["Health Institution"] = listUserInformation[4]
             maps["Email"] = listUserInformation[5]
+
+            // Remove special characters
+            var newEmail = Utils.changeSpecialCharacter(listUserInformation[5], true)
 
             val refdatabase = FirebaseDatabase.getInstance()
             refdatabase.reference
                 .child("Users")
-                .child(listUserInformation[3])
+                .child(newEmail)
                 .updateChildren(maps)
         }
 
@@ -125,6 +144,36 @@ class Firebase: AppCompatActivity()  {
                     TODO("Not yet implemented")
                 }
             })
+        }
+
+        /*
+            Function to get user information
+        */
+        fun getUserInformation(user: FirebaseUser): Array<String> {
+            val email: String = user.email.toString()
+
+            val newEmail = Utils.changeSpecialCharacter(email, true)
+
+            val databaseReference = FirebaseDatabase.getInstance()
+            var mListUserInformation = arrayOf("", "", "", "")
+            databaseReference.getReference("Users").child(newEmail).addValueEventListener(object :
+                ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    // send data in array
+                    mListUserInformation[0] = snapshot.child("Name").value.toString() + snapshot.child("Surname").value.toString()
+                    mListUserInformation[1] = snapshot.child("Job").value.toString()
+                    mListUserInformation[2] = snapshot.child("N Certificate Professional").value.toString()
+                    mListUserInformation[3] = snapshot.child("Health Institution").value.toString()
+
+                    println("           iiiiiiiiiiiiiiiiiiiiiiiiiii" + mListUserInformation[0])
+
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
+
+            return mListUserInformation
         }
     }
 }

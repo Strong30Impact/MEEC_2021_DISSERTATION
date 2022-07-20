@@ -1,6 +1,8 @@
 package pt.ipca.dissertation_14861.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +13,10 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import pt.ipca.dissertation_14861.R
+import pt.ipca.dissertation_14861.ui.activities.LoginActivity
+import pt.ipca.dissertation_14861.ui.activities.MainActivity
 import pt.ipca.dissertation_14861.utils.Firebase
 import pt.ipca.dissertation_14861.utils.Utils
 
@@ -103,6 +108,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
             R.id.login_btn_signin -> {
                 val email = login_et_email.text.toString()
                 val password = login_et_password.text.toString()
+
                 Firebase.signinAndSignup(mAuth, requireContext(), email, password)
             }
             R.id.password_iv_show -> {

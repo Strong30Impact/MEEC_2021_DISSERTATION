@@ -96,5 +96,25 @@ class Utils: AppCompatActivity() {
 
             return email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()
         }
+
+        /*
+            Function to change special character
+        */
+        fun changeSpecialCharacter(email: String, remove: Boolean): String {
+            var newEmail: String
+            if(remove){
+                newEmail = email.replace('@', 'A', false)
+                newEmail = newEmail.replace('.', 'P', false)
+                newEmail = newEmail.replace('_', 'U', false)
+                newEmail = newEmail.replace('-', 'H', false)
+            } else {
+                newEmail = email.replace('A', '@', false)
+                newEmail = newEmail.replace('P', '.', false)
+                newEmail = newEmail.replace('U', '_', false)
+                newEmail = newEmail.replace('H', '-', false)
+            }
+            return newEmail
+
+        }
     }
 }

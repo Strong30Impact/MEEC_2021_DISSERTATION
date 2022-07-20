@@ -5,14 +5,17 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import pt.ipca.dissertation_14861.R
+import pt.ipca.dissertation_14861.utils.Firebase
 
 /*
     Class to created splash screen
 */
 class SplashScreenActivity : AppCompatActivity() {
 
-    var auth : FirebaseAuth? = null
+    private lateinit var auth : FirebaseAuth
+    private var mListUserInformation = arrayOf("", "", "", "")
 
     private val splashtime: Long = 3000
 
@@ -25,9 +28,20 @@ class SplashScreenActivity : AppCompatActivity() {
         // Hide toolbar
         supportActionBar?.hide()
 
+        // Get user info now so you don't have lag issues when showing in Main
+        if(auth.currentUser != null) {
+            val user: FirebaseUser = auth.currentUser!!
+
+            mListUserInformation = Firebase.getUserInformation(user)
+        }
+
         Handler().postDelayed({
             // Check if the user has authenticated or not
-            if(auth?.currentUser != null) {
+            if(auth.currentUser != null) {
+
+                // Send information to Main
+                MainActivity.name = mListUserInformation[0]
+                MainActivity.nCertificate = mListUserInformation[2]
                 startActivity(Intent(this, MainActivity::class.java))
             } else {
                 startActivity(Intent(this, LoginActivity::class.java))

@@ -27,9 +27,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import pt.ipca.dissertation_14861.R
 import pt.ipca.dissertation_14861.utils.Alerts
+import pt.ipca.dissertation_14861.utils.Firebase
 import pt.ipca.dissertation_14861.utils.connections.ConnectionReceiver
 import pt.ipca.dissertation_14861.utils.connections.ReceiverConnection
 import java.io.File
+import java.security.cert.Certificate
 
 class MainActivity : AppCompatActivity(), ConnectionReceiver.ConnectionReceiverListener {
 
@@ -48,6 +50,10 @@ class MainActivity : AppCompatActivity(), ConnectionReceiver.ConnectionReceiverL
     //Firebase
     private lateinit var  auth : FirebaseAuth
 
+    companion object{
+        lateinit var name: String
+        lateinit var nCertificate: String
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -93,20 +99,20 @@ class MainActivity : AppCompatActivity(), ConnectionReceiver.ConnectionReceiverL
 
         //Firebase info
         auth = FirebaseAuth.getInstance()
-        val user: FirebaseUser? = auth?.currentUser
-        val name:String? = user?.displayName
-        val id:String? = user?.uid
-        val image = user?.photoUrl
 
+        // Show user information
         user_tv_name.text = name
 
-        println("           wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" + name)
-//        user_tv_id.text = id
+        if(nCertificate == "Administrator"){
+            user_tv_id.text = nCertificate
+        } else {
+            user_tv_id.text = "Certificate Professional nº " + nCertificate
+        }
 
-        // rounded corner image
+/*        // rounded corner image
         Glide.with(this).load(image).override(400, 400).apply(RequestOptions.circleCropTransform()).into(
             user_iv_photo
-        )
+        )*/
 
         user_tv_id = hview.findViewById<TextView>(R.id.user_tv_id)
         user_tv_name = hview.findViewById<TextView>(R.id.user_tv_name)
@@ -130,6 +136,9 @@ class MainActivity : AppCompatActivity(), ConnectionReceiver.ConnectionReceiverL
         navigationView.setNavigationItemSelectedListener{
             when (it.itemId) {
                 R.id.logout_icon -> {
+
+                    name = ""
+                    nCertificate = ""
                     FirebaseAuth.getInstance().signOut()
                     val intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
