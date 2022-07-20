@@ -93,9 +93,9 @@ class Firebase: AppCompatActivity()  {
             val maps = mutableMapOf<String,Any?>()
             maps["Name"] = listUserInformation[0]
             maps["Surname"] = listUserInformation[1]
-            maps["job"] = listUserInformation[2]
+            maps["Job"] = listUserInformation[2]
             maps["Health Institution"] = listUserInformation[4]
-            maps["email"] = listUserInformation[5]
+            maps["Email"] = listUserInformation[5]
 
             val refdatabase = FirebaseDatabase.getInstance()
             refdatabase.reference
