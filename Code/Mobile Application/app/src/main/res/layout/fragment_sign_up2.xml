@@ -59,7 +59,8 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="8dp"
                     android:background="@drawable/signin_btn"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textColor="@color/black"/>
 
                 <ImageView
                     android:id="@+id/signup_iv_arrow"
@@ -70,7 +71,7 @@
                     android:layout_marginTop="0dp"
                     android:layout_marginEnd="17dp"
                     android:gravity="center"
-                    android:src="@drawable/icon_arrow"
+                    android:src="@drawable/icon_down_arrow"
                     app:tint="@color/colorPrimaryDark" />
             </RelativeLayout>
 
@@ -180,24 +181,84 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="200dp"
-                    android:text="DO HAVE AN ACCOUNT?"
-                    android:textColor="@color/textSecundaryColor" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/login_tv_signup"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="20dp"
-                    android:text="Login"
-                    android:textColor="@color/colorAccent"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="DO HAVE AN ACCOUNT?"
+                        android:textColor="@color/textSecundaryColor"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/login_tv_signup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Login"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/textView"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="--OR--"
+                        android:textColor="@color/textSecundaryColor"
+                        app:layout_constraintEnd_toStartOf="@+id/signup_btn_back"
+                        app:layout_constraintStart_toEndOf="@+id/login_tv_signup"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/signup_btn_back"
+                        android:layout_width="60dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/signin_btn"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/signup_tv_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:text="Back"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/signup_btn_back"
+                        app:layout_constraintEnd_toEndOf="@+id/signup_btn_back"
+                        app:layout_constraintHorizontal_bias="0.714"
+                        app:layout_constraintStart_toStartOf="@+id/signup_btn_back"
+                        app:layout_constraintTop_toTopOf="@+id/signup_btn_back"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <ImageView
+                        android:id="@+id/signup_iv_back"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_alignTop="@+id/signup_btn_back"
+                        android:layout_alignParentEnd="true"
+                        android:gravity="center"
+                        android:src="@drawable/icon_back_arrow"
+                        app:layout_constraintBottom_toBottomOf="@+id/signup_btn_back"
+                        app:layout_constraintEnd_toStartOf="@+id/signup_tv_back"
+                        app:layout_constraintHorizontal_bias="0.8"
+                        app:layout_constraintStart_toStartOf="@+id/signup_btn_back"
+                        app:layout_constraintTop_toTopOf="@+id/signup_btn_back"
+                        app:tint="@color/black" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </LinearLayout>
 
         </LinearLayout>ç

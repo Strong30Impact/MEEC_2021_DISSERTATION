@@ -100,9 +100,11 @@ class Firebase: AppCompatActivity()  {
                     healthInstitutions.removeAt(0)
                     for (postSnapshot in snapshot.children) {
                         val name = postSnapshot.key
-                        healthInstitutions.add(name.toString())
+                        // Check if exist same health institutions
+                        if(!(healthInstitutions.contains(name))){
+                            healthInstitutions.add(name.toString())
+                        }
                     }
-
                 }
                 override fun onCancelled(error: DatabaseError) {
                     TODO("Not yet implemented")

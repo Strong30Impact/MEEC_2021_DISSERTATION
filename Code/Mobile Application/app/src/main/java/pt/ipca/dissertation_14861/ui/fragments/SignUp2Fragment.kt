@@ -76,6 +76,7 @@ class SignUp2Fragment : Fragment(), View.OnClickListener{
     }
 
     private lateinit var loginFragment: LoginFragment
+    private lateinit var signUpFragment: SignUpFragment
     private lateinit var transaction: FragmentTransaction
     private lateinit var login_tv_signup: TextView
     private lateinit var signup_et_email: EditText
@@ -84,6 +85,7 @@ class SignUp2Fragment : Fragment(), View.OnClickListener{
     private lateinit var signup_btn_signup: Button
     private lateinit var password_iv_show: ImageView
     private lateinit var password_iv_confirmshow: ImageView
+    private lateinit var signup_btn_back: Button
 
     var misshowpass = false
     var misshowconfirmpass = false
@@ -100,12 +102,13 @@ class SignUp2Fragment : Fragment(), View.OnClickListener{
         password_iv_show = view.findViewById(R.id.password_iv_show)
         password_iv_confirmshow = view.findViewById(R.id.password_iv_confirmshow)
         signup_spinner_health = view.findViewById(R.id.signup_spinner_health)
+        signup_btn_back = view.findViewById(R.id.signup_btn_back)
 
         login_tv_signup.setOnClickListener(this)
         signup_btn_signup.setOnClickListener(this)
         password_iv_show.setOnClickListener(this)
         password_iv_confirmshow.setOnClickListener(this)
-
+        signup_btn_back.setOnClickListener(this)
 
         // Check if the password are the same
         signup_et_password.addTextChangedListener(object : TextWatcher {
@@ -169,6 +172,12 @@ class SignUp2Fragment : Fragment(), View.OnClickListener{
                 loginFragment = LoginFragment()
                 transaction = fragmentManager?.beginTransaction()!!
                 transaction.replace(R.id.drawable_frameLayout, loginFragment, null)
+                transaction.commit()
+            }
+            R.id.signup_btn_back -> {
+                signUpFragment = SignUpFragment()
+                transaction = fragmentManager?.beginTransaction()!!
+                transaction.replace(R.id.drawable_frameLayout, signUpFragment, null)
                 transaction.commit()
             }
         }

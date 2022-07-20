@@ -66,7 +66,7 @@ class SignUpFragment : Fragment(), View.OnClickListener {
         lateinit var name: String
         lateinit var surname: String
         lateinit var certificate: String
-        lateinit var job: String
+        var job: String = "doctor"
     }
 
     private lateinit var loginFragment: LoginFragment
@@ -97,6 +97,9 @@ class SignUpFragment : Fragment(), View.OnClickListener {
             val radioButtonSelected = view.findViewById<RadioButton>(checkedId)
             job = radioButtonSelected.text.toString()
         }
+
+        // Clear list to don't add same health institutions
+        Firebase.healthInstitutions = arrayListOf<String>("")
 
         //get information health institutions so there is no delay when presenting the list of health institutions to the user
         Firebase.getHealthInstitutions(requireContext())
