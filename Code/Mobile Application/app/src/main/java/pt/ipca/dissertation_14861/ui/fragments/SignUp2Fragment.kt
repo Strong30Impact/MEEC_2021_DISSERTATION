@@ -133,31 +133,36 @@ class SignUp2Fragment : Fragment(), View.OnClickListener{
                     && (signup_et_confirmpassword.text.toString() == signup_et_password.text.toString())
                     && validationpassword == "false"
                 ) {
-                    FirebaseAuth.getInstance().createUserWithEmailAndPassword(
-                        signup_et_email.text.toString(),
-                        signup_et_password.text.toString()
-                    ).addOnCompleteListener {
-                        if (it.isSuccessful) {
+                    var emailCorrect = Utils.validateEmailAddress(signup_et_email.text.toString())
+                    if(emailCorrect){
+                        FirebaseAuth.getInstance().createUserWithEmailAndPassword(
+                            signup_et_email.text.toString(),
+                            signup_et_password.text.toString()
+                        ).addOnCompleteListener {
+                            if (it.isSuccessful) {
 
-                            //send information to firebase
-                            val list = arrayOf("", "", "", "", "", "")
-                            list[0] = SignUpFragment.name
-                            list[1] = SignUpFragment.surname
-                            list[2] = SignUpFragment.job
-                            list[3] = SignUpFragment.certificate
-                            list[4] = signup_spinner_health.selectedItem.toString()
-                            list[5] = signup_et_email.text.toString()
+                                //send information to firebase
+                                val list = arrayOf("", "", "", "", "", "")
+                                list[0] = SignUpFragment.name
+                                list[1] = SignUpFragment.surname
+                                list[2] = SignUpFragment.job
+                                list[3] = SignUpFragment.certificate
+                                list[4] = signup_spinner_health.selectedItem.toString()
+                                list[5] = signup_et_email.text.toString()
 
-                            Firebase.sendUserInformation(list)
+                                Firebase.sendUserInformation(list)
 
-                            loginFragment = LoginFragment()
-                            transaction = fragmentManager?.beginTransaction()!!
-                            transaction.replace(R.id.drawable_frameLayout, loginFragment, null)
-                            transaction.commit()
+                                loginFragment = LoginFragment()
+                                transaction = fragmentManager?.beginTransaction()!!
+                                transaction.replace(R.id.drawable_frameLayout, loginFragment, null)
+                                transaction.commit()
+                            }
                         }
+                    } else {
+                        authenticationError("email")
                     }
                 } else {
-                    authenticationError()
+                    authenticationError("")
                 }
             }
             R.id.password_iv_show -> {
@@ -186,7 +191,7 @@ class SignUp2Fragment : Fragment(), View.OnClickListener{
     /*
         Function to check if exist an error in authentication
     */
-    private fun authenticationError() {
+    private fun authenticationError(error: String) {
         var msg: String
         val alert = Alerts()
         val builder = AlertDialog.Builder(requireContext())
@@ -206,6 +211,10 @@ class SignUp2Fragment : Fragment(), View.OnClickListener{
             ((signup_et_confirmpassword.text.toString() == signup_et_password.text.toString()) && (validationpassword != "false")) -> {
                 msg =
                     "An password verification error has occurred. Please choose a password with 8 or more characters including uppercase, lowercase and digits."
+                alert.showAlertAuthenticationError(builder, msg)
+            }
+            error == "email" -> {
+                msg = "An authentication error has occurred. Please define a validated email."
                 alert.showAlertAuthenticationError(builder, msg)
             }
         }

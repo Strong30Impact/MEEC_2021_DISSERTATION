@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.util.Patterns
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -78,6 +79,14 @@ class Utils: AppCompatActivity() {
                 "true"
             }
             return validate
+        }
+
+        /*
+            Function to validate email and alert user
+        */
+        fun validateEmailAddress(email: String) : Boolean {
+
+            return email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()
         }
     }
 }

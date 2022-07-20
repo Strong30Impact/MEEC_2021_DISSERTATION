@@ -29,28 +29,32 @@ class Firebase: AppCompatActivity()  {
             email: String,
             password: String
         ) {
+            val alert = Alerts()
+            val builder = AlertDialog.Builder(mContext)
+
             if (email.isNotEmpty() && password.isNotEmpty()) {
-                mAuth?.createUserWithEmailAndPassword(email, password)
-                    ?.addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            //Creating a user account
-                            Utils.moveMainPage(task.result?.user, mContext)
-                        } else if (task.exception?.message.isNullOrEmpty()) {
-                            //Show the error message
-                            Toast.makeText(mContext, task.exception?.message, Toast.LENGTH_LONG)
-                                .show()
-                        } else {
-                            //Login if you have account
-                            signinEmail(mAuth, mContext, email, password)
+
+                // Check if email is validated
+                if (Utils.validateEmailAddress(email)) {
+                    mAuth?.createUserWithEmailAndPassword(email, password)
+                        ?.addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                //Creating a user account
+                                Utils.moveMainPage(task.result?.user, mContext)
+                            } else if (task.exception?.message.isNullOrEmpty()) {
+                                //Show the error message
+                                Toast.makeText(mContext, task.exception?.message, Toast.LENGTH_LONG)
+                                    .show()
+                            } else {
+                                //Login if you have account
+                                signinEmail(mAuth, mContext, email, password)
+                            }
                         }
-                    }
+                } else {
+                    alert.showAlertSignInError(builder,"An authentication error has occurred. Please define a validated email.")
+                }
             } else {
-                val alert = Alerts()
-                val builder = AlertDialog.Builder(mContext)
-                alert.showAlertSignInError(
-                    builder,
-                    "An authentication error has occurred. Please set an email and/or password"
-                )
+                alert.showAlertSignInError(builder,"An authentication error has occurred. Please set an email and/or password.")
             }
         }
 
