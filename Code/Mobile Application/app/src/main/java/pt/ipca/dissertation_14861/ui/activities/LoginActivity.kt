@@ -43,7 +43,7 @@ class LoginActivity : AppCompatActivity(), ConnectionReceiver.ConnectionReceiver
     */
     override fun onNetworkConnectionChanged(isConnected: Boolean) {
         if(!isConnected){
-            var alert = Alerts()
+            val alert = Alerts()
             val builder = AlertDialog.Builder(this)
             alert.showAlertConnectionInternet(builder, this)
         }

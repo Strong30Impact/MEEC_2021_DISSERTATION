@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.provider.Settings
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import pt.ipca.dissertation_14861.R
 

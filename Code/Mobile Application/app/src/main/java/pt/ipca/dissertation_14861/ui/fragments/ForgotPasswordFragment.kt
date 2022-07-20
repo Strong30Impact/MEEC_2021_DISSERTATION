@@ -2,17 +2,13 @@ package pt.ipca.dissertation_14861.ui.fragments
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.auth.FirebaseAuth
 import pt.ipca.dissertation_14861.R
@@ -78,7 +74,7 @@ class ForgotPasswordFragment : Fragment(), View.OnClickListener {
     private lateinit var loginFragment: LoginFragment
     private lateinit var signUpFragment: SignUpFragment
     private lateinit var transaction: FragmentTransaction
-    var mAuth : FirebaseAuth? = null
+    private lateinit var mAuth : FirebaseAuth
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -99,7 +95,7 @@ class ForgotPasswordFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View) {
         when (v.id) {
             R.id.fp_btn_password -> {
-                var emailCorrect = Utils.validateEmailAddress(fp_et_email.text.toString())
+                val emailCorrect = Utils.validateEmailAddress(fp_et_email.text.toString())
                 if (emailCorrect) {
                     Firebase.sendResetPassword(mAuth, fp_et_email.text.toString(), requireContext())
                 } else {

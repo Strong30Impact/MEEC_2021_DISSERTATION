@@ -1,26 +1,20 @@
 package pt.ipca.dissertation_14861.ui.fragments
 
 import android.app.AlertDialog
-import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import pt.ipca.dissertation_14861.R
 import pt.ipca.dissertation_14861.utils.Alerts
 import pt.ipca.dissertation_14861.utils.Firebase
 import pt.ipca.dissertation_14861.utils.Utils
-import java.util.ArrayList
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -87,8 +81,8 @@ class SignUp2Fragment : Fragment(), View.OnClickListener{
     private lateinit var password_iv_confirmshow: ImageView
     private lateinit var signup_btn_back: Button
 
-    var misshowpass = false
-    var misshowconfirmpass = false
+    private var misshowpass = false
+    private var misshowconfirmpass = false
     var validationpassword: String? = "false"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -122,7 +116,7 @@ class SignUp2Fragment : Fragment(), View.OnClickListener{
         })
 
         // Sends health institutions to spinner
-        signup_spinner_health.adapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1,Firebase.healthInstitutions)
+        signup_spinner_health.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1,Firebase.healthInstitutions)
     }
 
     override fun onClick(v: View) {
@@ -133,7 +127,7 @@ class SignUp2Fragment : Fragment(), View.OnClickListener{
                     && (signup_et_confirmpassword.text.toString() == signup_et_password.text.toString())
                     && validationpassword == "false"
                 ) {
-                    var emailCorrect = Utils.validateEmailAddress(signup_et_email.text.toString())
+                    val emailCorrect = Utils.validateEmailAddress(signup_et_email.text.toString())
                     if(emailCorrect){
                         FirebaseAuth.getInstance().createUserWithEmailAndPassword(
                             signup_et_email.text.toString(),
@@ -192,7 +186,7 @@ class SignUp2Fragment : Fragment(), View.OnClickListener{
         Function to check if exist an error in authentication
     */
     private fun authenticationError(error: String) {
-        var msg: String
+        val msg: String
         val alert = Alerts()
         val builder = AlertDialog.Builder(requireContext())
         when {

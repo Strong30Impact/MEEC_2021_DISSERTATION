@@ -11,7 +11,6 @@ import androidx.fragment.app.FragmentTransaction
 import pt.ipca.dissertation_14861.R
 import pt.ipca.dissertation_14861.utils.Alerts
 import pt.ipca.dissertation_14861.utils.Firebase
-import java.util.ArrayList
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -99,10 +98,10 @@ class SignUpFragment : Fragment(), View.OnClickListener {
         }
 
         // Clear list to don't add same health institutions
-        Firebase.healthInstitutions = arrayListOf<String>("")
+        Firebase.healthInstitutions = arrayListOf("")
 
         //get information health institutions so there is no delay when presenting the list of health institutions to the user
-        Firebase.getHealthInstitutions(requireContext())
+        Firebase.getHealthInstitutions()
     }
 
     override fun onClick(v: View) {
@@ -138,7 +137,7 @@ class SignUpFragment : Fragment(), View.OnClickListener {
         Function to check if exist an error in authentication
     */
     private fun authenticationError() {
-        var msg: String
+        val msg: String
         val alert = Alerts()
         val builder = AlertDialog.Builder(requireContext())
         when {

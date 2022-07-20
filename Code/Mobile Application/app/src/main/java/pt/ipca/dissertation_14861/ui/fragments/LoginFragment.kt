@@ -66,7 +66,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
             }
     }
 
-    lateinit var forgotPasswordFragment: ForgotPasswordFragment
+    private lateinit var forgotPasswordFragment: ForgotPasswordFragment
     private lateinit var signUpFragment: SignUpFragment
     private lateinit var transaction: FragmentTransaction
     private lateinit var login_btn_signin: Button
@@ -77,9 +77,6 @@ class LoginFragment : Fragment(), View.OnClickListener {
     private lateinit var login_tv_signup: TextView
     private lateinit var mAuth : FirebaseAuth
     private var misshowpass = false
-//    var googleSignInClient: GoogleSignInClient? = null
-//    var callbackManager : CallbackManager? = null
-//    var GOOGLE_LOGIN_CODE = 12502
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -97,14 +94,6 @@ class LoginFragment : Fragment(), View.OnClickListener {
         login_tv_forgpass.setOnClickListener(this)
         login_tv_signup.setOnClickListener(this)
 
-/*        // Configure Google Sign in
-        var gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id)) //values.xml
-            .requestEmail()
-            .build()
-        googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
-        callbackManager = CallbackManager.Factory.create()
-        FacebookSdk.sdkInitialize(requireContext());*/
         mAuth = FirebaseAuth.getInstance()
 
     }

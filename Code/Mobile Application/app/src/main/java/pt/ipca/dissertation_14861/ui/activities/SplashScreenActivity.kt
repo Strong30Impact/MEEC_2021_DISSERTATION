@@ -11,7 +11,7 @@ import pt.ipca.dissertation_14861.R
 */
 class SplashScreenActivity : AppCompatActivity() {
 
-    val splashtime: Long = 3000
+    private val splashtime: Long = 3000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
