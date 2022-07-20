@@ -50,4 +50,7 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:30.2.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
+    //image loading library
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+
 }

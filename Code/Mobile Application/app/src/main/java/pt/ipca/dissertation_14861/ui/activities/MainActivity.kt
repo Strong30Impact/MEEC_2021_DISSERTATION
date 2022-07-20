@@ -20,6 +20,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentTransaction
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -36,6 +38,15 @@ class MainActivity : AppCompatActivity(), ConnectionReceiver.ConnectionReceiverL
     private lateinit var toolbar: androidx.appcompat.widget.Toolbar
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
+    private lateinit var hview: View
+
+    //Username
+    private lateinit var user_iv_photo: ImageView
+    private lateinit var user_tv_name: TextView
+    private lateinit var user_tv_id: TextView
+
+    //Firebase
+    private lateinit var  auth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,7 +85,32 @@ class MainActivity : AppCompatActivity(), ConnectionReceiver.ConnectionReceiverL
 
         drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
         navigationView = findViewById<NavigationView>(R.id.nav_view)
+        hview = navigationView.getHeaderView(0)
 
+        user_tv_id = hview.findViewById<TextView>(R.id.user_tv_id)
+        user_tv_name = hview.findViewById<TextView>(R.id.user_tv_name)
+        user_iv_photo = hview.findViewById<ImageView>(R.id.user_iv_photo)
+
+        //Firebase info
+        auth = FirebaseAuth.getInstance()
+        val user: FirebaseUser? = auth?.currentUser
+        val name:String? = user?.displayName
+        val id:String? = user?.uid
+        val image = user?.photoUrl
+
+        user_tv_name.text = name
+
+        println("           wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" + name)
+//        user_tv_id.text = id
+
+        // rounded corner image
+        Glide.with(this).load(image).override(400, 400).apply(RequestOptions.circleCropTransform()).into(
+            user_iv_photo
+        )
+
+        user_tv_id = hview.findViewById<TextView>(R.id.user_tv_id)
+        user_tv_name = hview.findViewById<TextView>(R.id.user_tv_name)
+        user_iv_photo = hview.findViewById<ImageView>(R.id.user_iv_photo)
 
         var actionBarDrawerToggle = ActionBarDrawerToggle(
             this,
@@ -93,7 +129,11 @@ class MainActivity : AppCompatActivity(), ConnectionReceiver.ConnectionReceiverL
          */
         navigationView.setNavigationItemSelectedListener{
             when (it.itemId) {
-
+                R.id.logout_icon -> {
+                    FirebaseAuth.getInstance().signOut()
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                }
             }
             drawerLayout.closeDrawers()
             true
