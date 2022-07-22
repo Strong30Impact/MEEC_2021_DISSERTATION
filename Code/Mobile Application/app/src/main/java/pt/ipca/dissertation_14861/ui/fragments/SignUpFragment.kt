@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction
 import pt.ipca.dissertation_14861.R
 import pt.ipca.dissertation_14861.utils.Alerts
 import pt.ipca.dissertation_14861.utils.Firebase
+import pt.ipca.dissertation_14861.utils.Utils
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -102,6 +103,9 @@ class SignUpFragment : Fragment(), View.OnClickListener {
 
         //get information health institutions so there is no delay when presenting the list of health institutions to the user
         Firebase.getHealthInstitutions()
+
+        loginFragment = LoginFragment()
+        signUp2Fragment = SignUp2Fragment()
     }
 
     override fun onClick(v: View) {
@@ -115,20 +119,13 @@ class SignUpFragment : Fragment(), View.OnClickListener {
                     surname = signup_et_surname.text.toString()
                     certificate = signup_et_certificate.text.toString()
 
-                    signUp2Fragment = SignUp2Fragment()
-                    transaction = fragmentManager?.beginTransaction()!!
-                    transaction.replace(R.id.drawable_frameLayout, signUp2Fragment, null)
-                    transaction.commit()
-
+                    Utils.replaceFragment(signUp2Fragment, parentFragmentManager, 2)
                 } else {
                     authenticationError()
                 }
             }
             R.id.login_tv_signup -> {
-                loginFragment = LoginFragment()
-                transaction = fragmentManager?.beginTransaction()!!
-                transaction.replace(R.id.drawable_frameLayout, loginFragment, null)
-                transaction.commit()
+                Utils.replaceFragment(loginFragment, parentFragmentManager, 2)
             }
         }
     }

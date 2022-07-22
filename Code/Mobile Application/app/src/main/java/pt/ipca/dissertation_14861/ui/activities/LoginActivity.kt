@@ -9,12 +9,13 @@ import androidx.fragment.app.FragmentTransaction
 import pt.ipca.dissertation_14861.R
 import pt.ipca.dissertation_14861.ui.fragments.LoginFragment
 import pt.ipca.dissertation_14861.utils.Alerts
+import pt.ipca.dissertation_14861.utils.Utils
 import pt.ipca.dissertation_14861.utils.connections.ConnectionReceiver
 import pt.ipca.dissertation_14861.utils.connections.ReceiverConnection
 
 class LoginActivity : AppCompatActivity(), ConnectionReceiver.ConnectionReceiverListener {
 
-    lateinit var loginFragment: LoginFragment
+    private var loginFragment: LoginFragment = LoginFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +31,6 @@ class LoginActivity : AppCompatActivity(), ConnectionReceiver.ConnectionReceiver
         )
         ReceiverConnection.instance.setConnectionListener(this)
 
-        loginFragment = LoginFragment()
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.drawable_frameLayout, loginFragment)

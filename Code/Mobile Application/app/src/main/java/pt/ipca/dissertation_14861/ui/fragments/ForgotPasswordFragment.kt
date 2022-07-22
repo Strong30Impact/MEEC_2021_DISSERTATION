@@ -71,10 +71,10 @@ class ForgotPasswordFragment : Fragment(), View.OnClickListener {
     private lateinit var fp_tv_signup: TextView
     private lateinit var fp_btn_password: Button
     private lateinit var fp_btn_back: Button
-    private lateinit var loginFragment: LoginFragment
-    private lateinit var signUpFragment: SignUpFragment
     private lateinit var transaction: FragmentTransaction
     private lateinit var mAuth : FirebaseAuth
+    private lateinit var loginFragment: LoginFragment
+    private lateinit var signUpFragment: SignUpFragment
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -90,6 +90,8 @@ class ForgotPasswordFragment : Fragment(), View.OnClickListener {
         fp_btn_password.setOnClickListener(this)
         fp_btn_back.setOnClickListener(this)
 
+        loginFragment = LoginFragment()
+        signUpFragment = SignUpFragment()
     }
 
     override fun onClick(v: View) {
@@ -105,16 +107,10 @@ class ForgotPasswordFragment : Fragment(), View.OnClickListener {
                 }
             }
             R.id.fp_btn_back -> {
-                loginFragment = LoginFragment()
-                transaction = fragmentManager?.beginTransaction()!!
-                transaction.replace(R.id.drawable_frameLayout, loginFragment, null)
-                transaction.commit()
+                Utils.replaceFragment(loginFragment, parentFragmentManager, 2)
             }
             R.id.fp_tv_signup -> {
-                signUpFragment = SignUpFragment()
-                transaction = fragmentManager?.beginTransaction()!!
-                transaction.replace(R.id.drawable_frameLayout, signUpFragment, null)
-                transaction.commit()
+                Utils.replaceFragment(signUpFragment, parentFragmentManager, 2)
             }
         }
     }

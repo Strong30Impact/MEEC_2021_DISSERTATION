@@ -81,6 +81,7 @@ class SignUp2Fragment : Fragment(), View.OnClickListener{
     private lateinit var password_iv_confirmshow: ImageView
     private lateinit var signup_btn_back: Button
 
+
     private var misshowpass = false
     private var misshowconfirmpass = false
     var validationpassword: String? = "false"
@@ -117,6 +118,9 @@ class SignUp2Fragment : Fragment(), View.OnClickListener{
 
         // Sends health institutions to spinner
         signup_spinner_health.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1,Firebase.healthInstitutions)
+
+        loginFragment = LoginFragment()
+        signUpFragment = SignUpFragment()
     }
 
     override fun onClick(v: View) {
@@ -146,10 +150,7 @@ class SignUp2Fragment : Fragment(), View.OnClickListener{
 
                                 Firebase.sendUserInformation(list)
 
-                                loginFragment = LoginFragment()
-                                transaction = fragmentManager?.beginTransaction()!!
-                                transaction.replace(R.id.drawable_frameLayout, loginFragment, null)
-                                transaction.commit()
+                                Utils.replaceFragment(loginFragment, parentFragmentManager, 2)
                             }
                         }
                     } else {
@@ -168,16 +169,10 @@ class SignUp2Fragment : Fragment(), View.OnClickListener{
                 Utils.showPassword(misshowconfirmpass, signup_et_confirmpassword, password_iv_confirmshow)
             }
             R.id.login_tv_signup -> {
-                loginFragment = LoginFragment()
-                transaction = fragmentManager?.beginTransaction()!!
-                transaction.replace(R.id.drawable_frameLayout, loginFragment, null)
-                transaction.commit()
+                Utils.replaceFragment(loginFragment, parentFragmentManager, 2)
             }
             R.id.signup_btn_back -> {
-                signUpFragment = SignUpFragment()
-                transaction = fragmentManager?.beginTransaction()!!
-                transaction.replace(R.id.drawable_frameLayout, signUpFragment, null)
-                transaction.commit()
+                Utils.replaceFragment(signUpFragment, parentFragmentManager, 2)
             }
         }
     }

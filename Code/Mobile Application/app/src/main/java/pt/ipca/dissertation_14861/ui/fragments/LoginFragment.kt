@@ -101,6 +101,9 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
         mAuth = FirebaseAuth.getInstance()
 
+        forgotPasswordFragment = ForgotPasswordFragment()
+        signUpFragment = SignUpFragment()
+
     }
 
     override fun onClick(v: View) {
@@ -116,16 +119,12 @@ class LoginFragment : Fragment(), View.OnClickListener {
                 Utils.showPassword(misshowpass, login_et_password, password_iv_show)
             }
             R.id.login_tv_forgpass -> {
-                forgotPasswordFragment = ForgotPasswordFragment()
-                transaction = fragmentManager?.beginTransaction()!!
-                transaction.replace(R.id.drawable_frameLayout, forgotPasswordFragment, null)
-                transaction.commit()
+                Utils.replaceFragment(forgotPasswordFragment, parentFragmentManager, 2)
+
             }
             R.id.login_tv_signup -> {
-                signUpFragment = SignUpFragment()
-                transaction = fragmentManager?.beginTransaction()!!
-                transaction.replace(R.id.drawable_frameLayout, signUpFragment, null)
-                transaction.commit()
+                Utils.replaceFragment(signUpFragment, parentFragmentManager, 2)
+
             }
         }
     }

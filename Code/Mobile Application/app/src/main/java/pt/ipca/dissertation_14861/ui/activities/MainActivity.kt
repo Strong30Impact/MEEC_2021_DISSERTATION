@@ -1,6 +1,5 @@
 package pt.ipca.dissertation_14861.ui.activities
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.IntentFilter
@@ -11,8 +10,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import pt.ipca.dissertation_14861.R
@@ -43,11 +40,11 @@ class MainActivity : AppCompatActivity(), ConnectionReceiver.ConnectionReceiverL
     private lateinit var  auth : FirebaseAuth
 
     //Fragments
-    private var settingsFragment: SettingsFragment = SettingsFragment()
-    private var mainFragment: MainFragment = MainFragment()
-    private var gamepadJoystickFragment: GamepadJoystickFragment = GamepadJoystickFragment()
-    private var trackingCameraFragment: TrackingCameraFragment = TrackingCameraFragment()
-    private var addProblemFragment: AddProblemFragment = AddProblemFragment()
+    private lateinit var settingsFragment: SettingsFragment
+    private lateinit var mainFragment: MainFragment
+    private lateinit var gamepadJoystickFragment: GamepadJoystickFragment
+    private lateinit var trackingCameraFragment: TrackingCameraFragment
+    private lateinit var addProblemFragment: AddProblemFragment
 
     companion object{
         lateinit var name: String
@@ -77,25 +74,25 @@ class MainActivity : AppCompatActivity(), ConnectionReceiver.ConnectionReceiverL
                     Button to open main
                 */
                 R.id.transport_icon -> {
-                    Utils.replaceFragment(mainFragment, supportFragmentManager)
+                    Utils.replaceFragment(mainFragment, supportFragmentManager,1)
                 }
                 /*
                 Button to open transport list
                 */
                 R.id.transport_list_icon -> {
-                    Utils.replaceFragment(addProblemFragment, supportFragmentManager)
+                    Utils.replaceFragment(addProblemFragment, supportFragmentManager,1)
                 }
                 /*
                 Button to open robot tracking camera
                 */
                 R.id.camera_icon -> {
-                    Utils.replaceFragment(trackingCameraFragment, supportFragmentManager)
+                    Utils.replaceFragment(trackingCameraFragment, supportFragmentManager,1)
                 }
                 /*
                 Button to open gamepad joystick
                 */
                 R.id.ros_icon -> {
-                    Utils.replaceFragment(gamepadJoystickFragment, supportFragmentManager)
+                    Utils.replaceFragment(gamepadJoystickFragment, supportFragmentManager,1)
                 }
                 /*
                     Button to open more information
@@ -107,6 +104,12 @@ class MainActivity : AppCompatActivity(), ConnectionReceiver.ConnectionReceiverL
             return@setOnItemSelectedListener true
         }
     //        setUpNavigationDrawer()
+
+        settingsFragment = SettingsFragment()
+        mainFragment = MainFragment()
+        gamepadJoystickFragment = GamepadJoystickFragment()
+        trackingCameraFragment = TrackingCameraFragment()
+        addProblemFragment = AddProblemFragment()
     }
 
     /*
@@ -118,11 +121,11 @@ class MainActivity : AppCompatActivity(), ConnectionReceiver.ConnectionReceiverL
         popupMenu.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.report_icon -> {
-                    Utils.replaceFragment(addProblemFragment, supportFragmentManager)
+                    Utils.replaceFragment(addProblemFragment, supportFragmentManager,1)
                     true
                 }
                 R.id.settings_icon -> {
-                    Utils.replaceFragment(settingsFragment, supportFragmentManager)
+                    Utils.replaceFragment(settingsFragment, supportFragmentManager,1)
                     true
                 }
                 R.id.logout_icon -> {

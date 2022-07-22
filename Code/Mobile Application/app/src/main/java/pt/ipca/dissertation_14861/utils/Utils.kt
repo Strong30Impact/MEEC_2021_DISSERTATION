@@ -7,9 +7,11 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Patterns
 import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentContainerView
 import androidx.fragment.app.FragmentManager
 import com.google.android.gms.dynamic.SupportFragmentWrapper
 import com.google.firebase.auth.FirebaseUser
@@ -121,14 +123,26 @@ class Utils: AppCompatActivity() {
         }
 
         /*
-            Function to replace fragment
+            Function to replace fragment in activity
         */
-        fun replaceFragment(fragment: Fragment, manager: FragmentManager){
-            manager
-                .beginTransaction()
-                .replace(R.id.frame_Layout, fragment, null)
-                .addToBackStack(null)
-                .commit()
+        fun replaceFragment(fragment: Fragment, manager: FragmentManager, frame: Int){
+            when (frame) {
+                1 -> {
+                    manager
+                        .beginTransaction()
+                        .replace(R.id.frame_Layout, fragment, null)
+                        .addToBackStack(null)
+                        .commit()
+                }
+                2 -> {
+                    manager
+                        .beginTransaction()
+                        .replace(R.id.drawable_frameLayout, fragment, null)
+                        .addToBackStack(null)
+                        .commit()
+                }
+            }
+
         }
     }
 }
