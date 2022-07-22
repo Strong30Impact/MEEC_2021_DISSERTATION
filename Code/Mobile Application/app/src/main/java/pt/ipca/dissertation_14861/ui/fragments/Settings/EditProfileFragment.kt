@@ -5,20 +5,24 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.gms.tasks.Continuation
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.StorageTask
+import com.google.firebase.storage.UploadTask
 import pt.ipca.dissertation_14861.R
 import pt.ipca.dissertation_14861.ui.activities.MainActivity
 import pt.ipca.dissertation_14861.ui.fragments.MainFragment
@@ -83,7 +87,17 @@ class EditProfileFragment : Fragment(), View.OnClickListener {
     private lateinit var settings_tv_confirm: TextView
     private lateinit var user_et_name: EditText
     private lateinit var user_tv_id: TextView
+    private lateinit var settings_iv_back: ImageView
 
+    //Firebase
+/*    private lateinit var auth : FirebaseAuth
+    private lateinit var user: FirebaseUser
+    private lateinit var uid: String
+    private lateinit var fileref: StorageReference
+    private lateinit var storageReference: StorageReference
+    private lateinit var database: FirebaseDatabase
+    var imageUri: Uri? = null*/
+    
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -91,36 +105,106 @@ class EditProfileFragment : Fragment(), View.OnClickListener {
         settings_tv_confirm = view.findViewById(R.id.settings_tv_confirm)
         user_et_name = view.findViewById(R.id.user_et_name)
         user_tv_id = view.findViewById(R.id.user_tv_id)
+        settings_iv_back = view.findViewById(R.id.settings_iv_back)
 
         user_iv_photo.setOnClickListener(this)
         settings_tv_confirm.setOnClickListener(this)
+        settings_iv_back.setOnClickListener(this)
 
         user_et_name.hint = MainActivity.name
         user_tv_id.text = MainActivity.nCertificate
 
         mainFragment = MainFragment()
         settingsFragment = SettingsFragment()
+
+/*        auth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance()
+
+
+        val user = auth?.currentUser
+        val image = user?.photoUrl
+        storageReference = FirebaseStorage.getInstance().reference.child("Users Image").child(MainActivity.id)
+        fileref = storageReference.child("picture.jpg")
+
+        try {
+            fileref?.downloadUrl?.addOnSuccessListener { task ->
+                Glide.with(this).load(task).override(300,300).apply(RequestOptions.circleCropTransform()).into(user_iv_photo)
+            }
+        }catch (e: Exception){
+            e.printStackTrace()
+            Glide.with(this).load(image).override(300,300).apply(RequestOptions.circleCropTransform()).into(user_iv_photo)
+        }
+
+        Glide.with(this).load(image).override(300,300).apply(RequestOptions.circleCropTransform()).into(user_iv_photo)*/
+
     }
 
     override fun onClick(v: View) {
         when (v.id) {
             R.id.user_iv_photo -> {
-                var openGalleryIntent= Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                startActivityForResult(openGalleryIntent,1000)
+/*                var openGalleryIntent= Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                startActivityForResult(openGalleryIntent,1000)*/
             }
             R.id.settings_tv_confirm -> {
                 updateProfile(user_et_name.text.toString())
                 Utils.replaceFragment(settingsFragment, parentFragmentManager, 1)
             }
+            R.id.settings_iv_back -> {
+                Utils.replaceFragment(mainFragment, parentFragmentManager, 1)
+            }
         }
     }
 
-    fun updateProfile(name: String){
+/*    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == 1000 && resultCode == Activity.RESULT_OK) {
+            imageUri = data?.data
+            user_iv_photo.setImageURI(imageUri)
+            println(imageUri)
+        }
+    }*/
+
+    private fun updateProfile(name: String){
 
         // Get new name and change in Main
         MainActivity.name = name
 
         // Send new name to Firebase
         Firebase.updateUserProfile(MainActivity.email, name)
+
+/*        uploadImage()*/
     }
+
+/*    private fun uploadImage(){
+        if (imageUri != null){
+
+            var uploadTask: StorageTask<*>
+            uploadTask = fileref.putFile(imageUri!!)
+
+            uploadTask.continueWithTask(Continuation <UploadTask.TaskSnapshot, Task<Uri>> Contiuation@{ task ->
+                if(!task.isSuccessful ){
+                    task.exception?.let{
+                        throw it
+                    }
+                }
+                return@Contiuation fileref.downloadUrl
+            }).addOnCompleteListener { task ->
+                if(task.isSuccessful){
+                    val downloadUrl = task.result
+                    val url = downloadUrl.toString()
+                    val map = HashMap<String, Any>()
+                    map["photo"] = url
+                    FirebaseDatabase.getInstance()
+                        .reference
+                        .child("Users")
+                        .child(MainActivity.id)
+                        .updateChildren(map)
+
+                    fileref.downloadUrl.addOnSuccessListener { task ->
+                        Glide.with(this).load(task).override(300,300).apply(RequestOptions.circleCropTransform()).into(user_iv_photo)
+                    }
+                }
+            }
+        }
+    }*/
 }

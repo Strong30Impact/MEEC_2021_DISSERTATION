@@ -8,6 +8,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import pt.ipca.dissertation_14861.R
 import pt.ipca.dissertation_14861.utils.Firebase
+import pt.ipca.dissertation_14861.utils.Utils
 
 /*
     Class to created splash screen
@@ -43,6 +44,7 @@ class SplashScreenActivity : AppCompatActivity() {
                 MainActivity.name = mListUserInformation[0]
                 MainActivity.nCertificate = mListUserInformation[2]
                 MainActivity.email = mListUserInformation[4]
+                MainActivity.id = Utils.changeSpecialCharacter(mListUserInformation[4], true)
                 startActivity(Intent(this, MainActivity::class.java))
             } else {
                 startActivity(Intent(this, LoginActivity::class.java))

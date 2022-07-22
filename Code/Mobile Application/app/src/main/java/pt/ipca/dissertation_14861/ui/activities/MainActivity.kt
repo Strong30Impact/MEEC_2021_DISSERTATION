@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity(), ConnectionReceiver.ConnectionReceiverL
         lateinit var name: String
         lateinit var nCertificate: String
         lateinit var email: String
+        lateinit var id: String
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
