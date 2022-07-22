@@ -1,14 +1,374 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.SettingsFragment">
+    tools:context=".ui.fragments.SettingsFragment"
+    android:background="@color/colorPrimary">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="settings" />
+        android:id="@+id/settings_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:text="Settings"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/settings_iv_back"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentEnd="true"
+        android:gravity="center"
+        android:background="@drawable/icon_arrow_back"
+        android:backgroundTint="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/settings_tv"
+        app:layout_constraintEnd_toStartOf="@+id/settings_tv"
+        app:layout_constraintHorizontal_bias="0.121"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/settings_tv"
+        app:layout_constraintVertical_bias="0.9" />
+
+
+    <ImageView
+        android:id="@+id/user_iv_photo"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/icon_user"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="@+id/settings_tv"
+        app:layout_constraintStart_toStartOf="@+id/settings_tv"
+        app:layout_constraintTop_toBottomOf="@+id/settings_tv" />
+
+    <TextView
+        android:id="@+id/user_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Username"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/user_iv_photo"
+        app:layout_constraintStart_toStartOf="@+id/user_iv_photo"
+        app:layout_constraintTop_toBottomOf="@+id/user_iv_photo" />
+
+    <TextView
+        android:id="@+id/user_tv_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="nº "
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/user_tv_name"
+        app:layout_constraintStart_toStartOf="@+id/user_tv_name"
+        app:layout_constraintTop_toBottomOf="@+id/user_tv_name" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/signin_btn"
+        android:backgroundTint="@color/colorAccent"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/user_tv_name"
+        app:layout_constraintStart_toStartOf="@+id/user_tv_name"
+        app:layout_constraintTop_toBottomOf="@+id/user_tv_id">
+
+        <TextView
+            android:id="@+id/settings_tv_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingStart="15dp"
+            android:text="Edit Profile"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"/>
+
+        <ImageView
+            android:id="@+id/password_iv_show"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignTop="@+id/settings_tv_profile"
+            android:layout_alignBottom="@+id/settings_tv_profile"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/icon_arrow_next"
+            android:backgroundTint="@color/colorPrimary"
+            android:gravity="center" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/user_tv_name"
+        app:layout_constraintStart_toStartOf="@+id/user_tv_name"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
+
+        <TextView
+            android:id="@+id/settings_tv_privacy"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/grayLight"
+            android:gravity="center_vertical"
+            android:paddingStart="15dp"
+            android:text="Privacy &amp; Security"
+            android:textColor="@color/grayDark"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout3">
+
+        <TextView
+            android:id="@+id/settings_tv_password"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="55dp"
+            android:layout_marginEnd="0dp"
+            android:gravity="center_vertical"
+            android:text="Change Password"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/settings_iv_password"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignTop="@+id/settings_tv_password"
+            android:layout_alignBottom="@+id/settings_tv_password"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/icon_lock"
+            android:backgroundTint="@color/grayDark"/>
+
+        <ImageView
+            android:id="@+id/settings_iv_passwordNext"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15sp"
+            android:background="@drawable/icon_arrow_next"
+            android:backgroundTint="@color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout4">
+
+        <TextView
+            android:id="@+id/settings_tv_forgot"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="55dp"
+            android:layout_marginEnd="0dp"
+            android:gravity="center_vertical"
+            android:text="Forgot Password"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/settings_iv_forgot"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignTop="@+id/settings_tv_forgot"
+            android:layout_alignBottom="@+id/settings_tv_forgot"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/icon_forgot"
+            android:backgroundTint="@color/grayDark"/>
+
+        <ImageView
+            android:id="@+id/settings_iv_forgotNext"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/icon_arrow_next"
+            android:backgroundTint="@color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/user_tv_name"
+        app:layout_constraintStart_toStartOf="@+id/user_tv_name"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout5">
+
+        <TextView
+            android:id="@+id/settings_tv_preferences"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/grayLight"
+            android:gravity="center_vertical"
+            android:paddingStart="15dp"
+            android:text="Preferences"
+            android:textColor="@color/grayDark"
+            android:textSize="15sp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout6">
+
+        <TextView
+            android:id="@+id/settings_tv_language"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="55dp"
+            android:layout_marginEnd="0dp"
+            android:gravity="center_vertical"
+            android:text="Language"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/settings_iv_language"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignTop="@+id/settings_tv_language"
+            android:layout_alignBottom="@+id/settings_tv_language"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/icon_language"
+            android:backgroundTint="@color/grayDark"/>
+
+        <ImageView
+            android:id="@+id/settings_iv_languageNext"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/icon_arrow_next"
+            android:backgroundTint="@color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout8"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout7">
+
+        <TextView
+            android:id="@+id/settings_tv_darkmode"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="55dp"
+            android:layout_marginEnd="0dp"
+            android:gravity="center_vertical"
+            android:text="Dark Mode"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/settings_iv_darkmode"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignTop="@+id/settings_tv_darkmode"
+            android:layout_alignBottom="@+id/settings_tv_darkmode"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/icon_darkmode"
+            android:backgroundTint="@color/grayDark"/>
+
+        <Switch
+            android:id="@+id/settings_s_darkmode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/user_tv_name"
+        app:layout_constraintStart_toStartOf="@+id/user_tv_name"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout8">
+
+        <TextView
+            android:id="@+id/settings_tv_others"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/grayLight"
+            android:gravity="center_vertical"
+            android:paddingStart="15dp"
+            android:text="Others"
+            android:textColor="@color/grayDark"
+            android:textSize="15sp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout10"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout9">
+
+        <TextView
+            android:id="@+id/settings_tv_about"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="55dp"
+            android:layout_marginEnd="0dp"
+            android:gravity="center_vertical"
+            android:text="About"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/settings_iv_about"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignTop="@+id/settings_tv_about"
+            android:layout_alignBottom="@+id/settings_tv_about"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/icon_about"
+            android:backgroundTint="@color/grayDark"/>
+
+        <ImageView
+            android:id="@+id/settings_iv_aboutNext"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/icon_arrow_next"
+            android:backgroundTint="@color/black" />
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
