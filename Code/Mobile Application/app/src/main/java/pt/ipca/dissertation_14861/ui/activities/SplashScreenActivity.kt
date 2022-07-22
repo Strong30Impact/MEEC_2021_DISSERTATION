@@ -42,6 +42,7 @@ class SplashScreenActivity : AppCompatActivity() {
                 // Send information to Main
                 MainActivity.name = mListUserInformation[0]
                 MainActivity.nCertificate = mListUserInformation[2]
+                MainActivity.email = mListUserInformation[4]
                 startActivity(Intent(this, MainActivity::class.java))
             } else {
                 startActivity(Intent(this, LoginActivity::class.java))

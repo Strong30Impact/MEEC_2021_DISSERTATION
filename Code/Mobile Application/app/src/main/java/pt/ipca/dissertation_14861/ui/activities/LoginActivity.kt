@@ -3,13 +3,12 @@ package pt.ipca.dissertation_14861.ui.activities
 import android.app.AlertDialog
 import android.content.IntentFilter
 import android.net.ConnectivityManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import pt.ipca.dissertation_14861.R
 import pt.ipca.dissertation_14861.ui.fragments.LoginFragment
 import pt.ipca.dissertation_14861.utils.Alerts
-import pt.ipca.dissertation_14861.utils.Utils
 import pt.ipca.dissertation_14861.utils.connections.ConnectionReceiver
 import pt.ipca.dissertation_14861.utils.connections.ReceiverConnection
 

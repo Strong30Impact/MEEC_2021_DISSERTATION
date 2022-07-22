@@ -1,8 +1,6 @@
 package pt.ipca.dissertation_14861.ui.fragments
 
-import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +9,8 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import pt.ipca.dissertation_14861.R
-import pt.ipca.dissertation_14861.ui.activities.LoginActivity
-import pt.ipca.dissertation_14861.ui.activities.MainActivity
 import pt.ipca.dissertation_14861.utils.Firebase
 import pt.ipca.dissertation_14861.utils.Utils
 
@@ -73,7 +67,6 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
     private lateinit var forgotPasswordFragment: ForgotPasswordFragment
     private lateinit var signUpFragment: SignUpFragment
-    private lateinit var transaction: FragmentTransaction
     private lateinit var login_btn_signin: Button
     private lateinit var login_et_email: EditText
     private lateinit var login_et_password: EditText

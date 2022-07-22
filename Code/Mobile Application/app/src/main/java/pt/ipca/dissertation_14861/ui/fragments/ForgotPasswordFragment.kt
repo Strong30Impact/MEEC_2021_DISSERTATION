@@ -9,7 +9,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.auth.FirebaseAuth
 import pt.ipca.dissertation_14861.R
 import pt.ipca.dissertation_14861.utils.Alerts
@@ -71,7 +70,6 @@ class ForgotPasswordFragment : Fragment(), View.OnClickListener {
     private lateinit var fp_tv_signup: TextView
     private lateinit var fp_btn_password: Button
     private lateinit var fp_btn_back: Button
-    private lateinit var transaction: FragmentTransaction
     private lateinit var mAuth : FirebaseAuth
     private lateinit var loginFragment: LoginFragment
     private lateinit var signUpFragment: SignUpFragment

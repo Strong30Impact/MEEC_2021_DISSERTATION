@@ -1,12 +1,20 @@
 package pt.ipca.dissertation_14861.ui.fragments
 
 import android.os.Bundle
+import android.os.TestLooperManager
+import android.provider.ContactsContract
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 import pt.ipca.dissertation_14861.R
+import pt.ipca.dissertation_14861.ui.activities.LoginActivity
+import pt.ipca.dissertation_14861.ui.activities.MainActivity
+import pt.ipca.dissertation_14861.ui.fragments.Settings.ChangePasswordFragment
+import pt.ipca.dissertation_14861.ui.fragments.Settings.EditProfileFragment
 import pt.ipca.dissertation_14861.utils.Firebase
 import pt.ipca.dissertation_14861.utils.Utils
 
@@ -20,7 +28,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [SettingsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SettingsFragment : Fragment() {
+class SettingsFragment : Fragment(), View.OnClickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -61,51 +69,70 @@ class SettingsFragment : Fragment() {
             }
     }
 
+    private lateinit var mainFragment: MainFragment
+    private lateinit var changePasswordFragment: ChangePasswordFragment
+    private lateinit var editProfileFragment: EditProfileFragment
+    private lateinit var settings_iv_back: ImageView
+    private lateinit var settings_tv_profile: TextView
+    private lateinit var settings_iv_profile: ImageView
+    private lateinit var settings_iv_passwordNext: ImageView
+    private lateinit var settings_iv_forgotNext: ImageView
+    private lateinit var settings_iv_languageNext: ImageView
+    private lateinit var settings_iv_aboutNext: ImageView
+    private lateinit var user_tv_name: TextView
+    private lateinit var user_tv_id: TextView
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        settings_iv_back = view.findViewById(R.id.settings_iv_back)
+        settings_tv_profile = view.findViewById(R.id.settings_tv_profile)
+        settings_iv_profile = view.findViewById(R.id.settings_iv_profile)
+        settings_iv_passwordNext = view.findViewById(R.id.settings_iv_passwordNext)
+        settings_iv_forgotNext = view.findViewById(R.id.settings_iv_forgotNext)
+        settings_iv_languageNext = view.findViewById(R.id.settings_iv_languageNext)
+        settings_iv_aboutNext = view.findViewById(R.id.settings_iv_aboutNext)
+        user_tv_id = view.findViewById(R.id.user_tv_id)
+        user_tv_name = view.findViewById(R.id.user_tv_name)
 
-/*        login_btn_signin = view.findViewById(R.id.login_btn_signin)
-        login_et_email = view.findViewById(R.id.login_et_email)
-        login_et_password = view.findViewById(R.id.login_et_password)
-        password_iv_show = view.findViewById(R.id.password_iv_show)
-        login_tv_forgpass = view.findViewById(R.id.login_tv_forgpass)
-        login_tv_signup = view.findViewById(R.id.login_tv_signup)
+        settings_iv_back.setOnClickListener(this)
+        settings_tv_profile.setOnClickListener(this)
+        settings_iv_profile.setOnClickListener(this)
+        settings_iv_passwordNext.setOnClickListener(this)
+        settings_iv_forgotNext.setOnClickListener(this)
+        settings_iv_languageNext.setOnClickListener(this)
 
+        mainFragment = MainFragment()
+        changePasswordFragment = ChangePasswordFragment()
+        editProfileFragment = EditProfileFragment()
 
-        login_btn_signin.setOnClickListener(this)
-        password_iv_show.setOnClickListener(this)
-        login_tv_forgpass.setOnClickListener(this)
-        login_tv_signup.setOnClickListener(this)
-
-        mAuth = FirebaseAuth.getInstance()*/
-
+        user_tv_name.text = MainActivity.name
+        user_tv_id.text = MainActivity.nCertificate
     }
 
-/*    override fun onClick(v: View) {
+    override fun onClick(v: View) {
         when (v.id) {
-            R.id.login_btn_signin -> {
-                val email = login_et_email.text.toString()
-                val password = login_et_password.text.toString()
-
-                Firebase.signinAndSignup(mAuth, requireContext(), email, password)
+            R.id.settings_iv_back -> {
+                Utils.replaceFragment(mainFragment, parentFragmentManager, 1)
             }
-            R.id.password_iv_show -> {
-                misshowpass = !misshowpass
-                Utils.showPassword(misshowpass, login_et_password, password_iv_show)
+            R.id.settings_tv_profile -> {
+                Utils.replaceFragment(editProfileFragment, parentFragmentManager, 1)
             }
-            R.id.login_tv_forgpass -> {
-                forgotPasswordFragment = ForgotPasswordFragment()
-                transaction = fragmentManager?.beginTransaction()!!
-                transaction.replace(R.id.drawable_frameLayout, forgotPasswordFragment, null)
-                transaction.commit()
+            R.id.settings_iv_profile -> {
+                Utils.replaceFragment(editProfileFragment, parentFragmentManager, 1)
             }
-            R.id.login_tv_signup -> {
-                signUpFragment = SignUpFragment()
-                transaction = fragmentManager?.beginTransaction()!!
-                transaction.replace(R.id.drawable_frameLayout, signUpFragment, null)
-                transaction.commit()
+            R.id.settings_iv_passwordNext -> {
+                Utils.replaceFragment(changePasswordFragment, parentFragmentManager, 1)
+            }
+            R.id.settings_iv_forgotNext -> {
+                Utils.replaceFragment(mainFragment, parentFragmentManager, 1)
+            }
+            R.id.settings_iv_password -> {
+                Utils.replaceFragment(mainFragment, parentFragmentManager, 1)
+            }
+            R.id.settings_iv_aboutNext -> {
+                Utils.replaceFragment(mainFragment, parentFragmentManager, 1)
             }
         }
-    }*/
+    }
 }

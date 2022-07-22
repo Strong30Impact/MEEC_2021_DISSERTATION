@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import pt.ipca.dissertation_14861.R
 import pt.ipca.dissertation_14861.utils.Alerts
 import pt.ipca.dissertation_14861.utils.Firebase
@@ -71,7 +70,6 @@ class SignUpFragment : Fragment(), View.OnClickListener {
 
     private lateinit var loginFragment: LoginFragment
     private lateinit var signUp2Fragment: SignUp2Fragment
-    private lateinit var transaction: FragmentTransaction
     private lateinit var login_tv_signup: TextView
     private lateinit var next_btn_signup: Button
     private lateinit var signup_et_name: EditText

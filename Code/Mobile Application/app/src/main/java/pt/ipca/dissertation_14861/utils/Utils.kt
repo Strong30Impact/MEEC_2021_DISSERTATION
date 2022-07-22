@@ -7,13 +7,10 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Patterns
 import android.widget.EditText
-import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentContainerView
 import androidx.fragment.app.FragmentManager
-import com.google.android.gms.dynamic.SupportFragmentWrapper
 import com.google.firebase.auth.FirebaseUser
 import pt.ipca.dissertation_14861.R
 import pt.ipca.dissertation_14861.ui.activities.LoginActivity
@@ -142,7 +139,6 @@ class Utils: AppCompatActivity() {
                         .commit()
                 }
             }
-
         }
     }
 }

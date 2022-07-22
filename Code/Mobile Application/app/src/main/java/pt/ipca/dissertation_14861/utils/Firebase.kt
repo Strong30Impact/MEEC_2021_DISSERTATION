@@ -155,15 +155,16 @@ class Firebase: AppCompatActivity()  {
             val newEmail = Utils.changeSpecialCharacter(email, true)
 
             val databaseReference = FirebaseDatabase.getInstance()
-            var mListUserInformation = arrayOf("", "", "", "")
+            var mListUserInformation = arrayOf("", "", "", "", "")
             databaseReference.getReference("Users").child(newEmail).addValueEventListener(object :
                 ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     // send data in array
-                    mListUserInformation[0] = snapshot.child("Name").value.toString() + snapshot.child("Surname").value.toString()
+                    mListUserInformation[0] = snapshot.child("Name").value.toString() + " " + snapshot.child("Surname").value.toString()
                     mListUserInformation[1] = snapshot.child("Job").value.toString()
                     mListUserInformation[2] = snapshot.child("N Certificate Professional").value.toString()
                     mListUserInformation[3] = snapshot.child("Health Institution").value.toString()
+                    mListUserInformation[4] = snapshot.child("Email").value.toString()
 
                     println("           iiiiiiiiiiiiiiiiiiiiiiiiiii" + mListUserInformation[0])
 
@@ -174,6 +175,28 @@ class Firebase: AppCompatActivity()  {
             })
 
             return mListUserInformation
+        }
+
+        /*
+            Function to update user profile
+        */
+        fun updateUserProfile(email: String, fullname: String){
+            val maps = mutableMapOf<String,Any?>()
+
+            // Split string to obtain name and surname
+            val name = fullname.split(" ")
+
+            maps["Name"] = name[0]
+            maps["Surname"] = name[1].trim()
+
+            // Remove special characters
+            var newEmail = Utils.changeSpecialCharacter(email, true)
+
+            val refdatabase = FirebaseDatabase.getInstance()
+            refdatabase.reference
+                .child("Users")
+                .child(newEmail)
+                .updateChildren(maps)
         }
     }
 }

@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity(), ConnectionReceiver.ConnectionReceiverL
     companion object{
         lateinit var name: String
         lateinit var nCertificate: String
+        lateinit var email: String
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +66,13 @@ class MainActivity : AppCompatActivity(), ConnectionReceiver.ConnectionReceiverL
         ReceiverConnection.instance.setConnectionListener(this)
 
         bottomNavigationView = findViewById(R.id.nav_view)
+
+
+        settingsFragment = SettingsFragment()
+        mainFragment = MainFragment()
+        gamepadJoystickFragment = GamepadJoystickFragment()
+        trackingCameraFragment = TrackingCameraFragment()
+        addProblemFragment = AddProblemFragment()
 
         supportFragmentManager.beginTransaction().replace(R.id.frame_Layout,mainFragment).commit()
 
@@ -104,12 +112,6 @@ class MainActivity : AppCompatActivity(), ConnectionReceiver.ConnectionReceiverL
             return@setOnItemSelectedListener true
         }
     //        setUpNavigationDrawer()
-
-        settingsFragment = SettingsFragment()
-        mainFragment = MainFragment()
-        gamepadJoystickFragment = GamepadJoystickFragment()
-        trackingCameraFragment = TrackingCameraFragment()
-        addProblemFragment = AddProblemFragment()
     }
 
     /*
