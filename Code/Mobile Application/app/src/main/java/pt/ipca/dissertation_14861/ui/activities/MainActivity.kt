@@ -1,5 +1,6 @@
 package pt.ipca.dissertation_14861.ui.activities
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.IntentFilter
@@ -11,11 +12,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import pt.ipca.dissertation_14861.R
 import pt.ipca.dissertation_14861.ui.fragments.*
 import pt.ipca.dissertation_14861.utils.Alerts
+import pt.ipca.dissertation_14861.utils.Utils
 import pt.ipca.dissertation_14861.utils.connections.ConnectionReceiver
 import pt.ipca.dissertation_14861.utils.connections.ReceiverConnection
 
@@ -74,25 +77,25 @@ class MainActivity : AppCompatActivity(), ConnectionReceiver.ConnectionReceiverL
                     Button to open main
                 */
                 R.id.transport_icon -> {
-                    replaceFragment(mainFragment)
+                    Utils.replaceFragment(mainFragment, supportFragmentManager)
                 }
                 /*
                 Button to open transport list
                 */
                 R.id.transport_list_icon -> {
-                    replaceFragment(addProblemFragment)
+                    Utils.replaceFragment(addProblemFragment, supportFragmentManager)
                 }
                 /*
                 Button to open robot tracking camera
                 */
                 R.id.camera_icon -> {
-                    replaceFragment(trackingCameraFragment)
+                    Utils.replaceFragment(trackingCameraFragment, supportFragmentManager)
                 }
                 /*
                 Button to open gamepad joystick
                 */
                 R.id.ros_icon -> {
-                    replaceFragment(gamepadJoystickFragment)
+                    Utils.replaceFragment(gamepadJoystickFragment, supportFragmentManager)
                 }
                 /*
                     Button to open more information
@@ -115,11 +118,11 @@ class MainActivity : AppCompatActivity(), ConnectionReceiver.ConnectionReceiverL
         popupMenu.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.report_icon -> {
-                    replaceFragment(addProblemFragment)
+                    Utils.replaceFragment(addProblemFragment, supportFragmentManager)
                     true
                 }
                 R.id.settings_icon -> {
-                    replaceFragment(settingsFragment)
+                    Utils.replaceFragment(settingsFragment, supportFragmentManager)
                     true
                 }
                 R.id.logout_icon -> {
@@ -150,14 +153,6 @@ class MainActivity : AppCompatActivity(), ConnectionReceiver.ConnectionReceiverL
             popupMenu.show()
         }
     }
-
-    private fun replaceFragment(fragment: Fragment){
-
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.frame_Layout, fragment, null)
-            .addToBackStack(null)
-            .commit()    }
 
     /*
         Function that checks the Internet connection

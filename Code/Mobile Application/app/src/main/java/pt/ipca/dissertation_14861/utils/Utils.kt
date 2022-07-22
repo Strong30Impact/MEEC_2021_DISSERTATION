@@ -9,6 +9,9 @@ import android.util.Patterns
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import com.google.android.gms.dynamic.SupportFragmentWrapper
 import com.google.firebase.auth.FirebaseUser
 import pt.ipca.dissertation_14861.R
 import pt.ipca.dissertation_14861.ui.activities.LoginActivity
@@ -115,6 +118,17 @@ class Utils: AppCompatActivity() {
             }
             return newEmail
 
+        }
+
+        /*
+            Function to replace fragment
+        */
+        fun replaceFragment(fragment: Fragment, manager: FragmentManager){
+            manager
+                .beginTransaction()
+                .replace(R.id.frame_Layout, fragment, null)
+                .addToBackStack(null)
+                .commit()
         }
     }
 }

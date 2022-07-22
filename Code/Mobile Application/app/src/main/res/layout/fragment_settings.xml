@@ -152,13 +152,12 @@
 
         <ImageView
             android:id="@+id/settings_iv_password"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignTop="@+id/settings_tv_password"
-            android:layout_alignBottom="@+id/settings_tv_password"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:background="@drawable/icon_lock"
-            android:backgroundTint="@color/grayDark"/>
+            android:backgroundTint="@color/grayDark" />
 
         <ImageView
             android:id="@+id/settings_iv_passwordNext"
@@ -192,10 +191,9 @@
 
         <ImageView
             android:id="@+id/settings_iv_forgot"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignTop="@+id/settings_tv_forgot"
-            android:layout_alignBottom="@+id/settings_tv_forgot"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:background="@drawable/icon_forgot"
             android:backgroundTint="@color/grayDark"/>
@@ -253,10 +251,9 @@
 
         <ImageView
             android:id="@+id/settings_iv_language"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignTop="@+id/settings_tv_language"
-            android:layout_alignBottom="@+id/settings_tv_language"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:background="@drawable/icon_language"
             android:backgroundTint="@color/grayDark"/>
@@ -293,10 +290,9 @@
 
         <ImageView
             android:id="@+id/settings_iv_darkmode"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignTop="@+id/settings_tv_darkmode"
-            android:layout_alignBottom="@+id/settings_tv_darkmode"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:background="@drawable/icon_darkmode"
             android:backgroundTint="@color/grayDark"/>
@@ -352,10 +348,9 @@
 
         <ImageView
             android:id="@+id/settings_iv_about"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignTop="@+id/settings_tv_about"
-            android:layout_alignBottom="@+id/settings_tv_about"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:background="@drawable/icon_about"
             android:backgroundTint="@color/grayDark"/>
