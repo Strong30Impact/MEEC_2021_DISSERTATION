@@ -9,10 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import pt.ipca.dissertation_14861.R
 import pt.ipca.dissertation_14861.ui.activities.LoginActivity
 import pt.ipca.dissertation_14861.ui.activities.MainActivity
+import pt.ipca.dissertation_14861.ui.dialogs.DialogChangePassword
 import pt.ipca.dissertation_14861.ui.fragments.Settings.ChangePasswordFragment
 import pt.ipca.dissertation_14861.ui.fragments.Settings.EditProfileFragment
 import pt.ipca.dissertation_14861.utils.Firebase
@@ -81,6 +83,8 @@ class SettingsFragment : Fragment(), View.OnClickListener {
     private lateinit var settings_iv_aboutNext: ImageView
     private lateinit var user_tv_name: TextView
     private lateinit var user_tv_id: TextView
+    private lateinit var dialogChangePassword: BottomSheetDialog
+    private lateinit var configChangePassword: DialogChangePassword
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -108,6 +112,10 @@ class SettingsFragment : Fragment(), View.OnClickListener {
 
         user_tv_name.text = MainActivity.name
         user_tv_id.text = MainActivity.nCertificate
+
+        // Change Goals
+        dialogChangePassword= BottomSheetDialog(requireActivity())
+        dialogChangePassword.setContentView(R.layout.dialog_change_password)
     }
 
     override fun onClick(v: View) {
@@ -122,7 +130,11 @@ class SettingsFragment : Fragment(), View.OnClickListener {
                 Utils.replaceFragment(editProfileFragment, parentFragmentManager, 1)
             }
             R.id.settings_iv_passwordNext -> {
-                Utils.replaceFragment(changePasswordFragment, parentFragmentManager, 1)
+                dialogChangePassword.show()
+
+                dialogChangePassword.setOnCancelListener {
+                    dialogChangePassword.cancel()
+                }
             }
             R.id.settings_iv_forgotNext -> {
                 Utils.replaceFragment(mainFragment, parentFragmentManager, 1)

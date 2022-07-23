@@ -97,7 +97,7 @@ class EditProfileFragment : Fragment(), View.OnClickListener {
     private lateinit var storageReference: StorageReference
     private lateinit var database: FirebaseDatabase
     var imageUri: Uri? = null*/
-    
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
